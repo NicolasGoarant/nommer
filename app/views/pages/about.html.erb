@@ -1,0 +1,206 @@
+<%# ── À PROPOS ── %>
+
+<div class="max-w-3xl mx-auto px-6 py-14">
+
+  <%# ── HEADER ÉDITORIAL ── %>
+  <div class="mb-16">
+    <p class="text-xs tracking-widest uppercase font-medium mb-4" style="color:var(--color-accent)">À propos</p>
+    <h1 class="font-serif font-semibold leading-tight mb-6" style="font-size:clamp(2rem,5vw,3rem);color:var(--color-encre)">
+      Nommer n'est pas<br>un outil médical.
+    </h1>
+    <p class="leading-relaxed" style="font-size:1.15rem;color:var(--color-ardoise);max-width:34rem">
+      C'est un outil de documentation personnelle et d'orientation —
+      conçu par quelqu'un qui a vu de près ce que coûte l'errance médicale.
+    </p>
+  </div>
+
+  <%# ── SÉPARATEUR ── %>
+  <div class="mb-16" style="height:1px;background:var(--color-doux)"></div>
+
+  <%# ── PORTRAIT + INTRO ── %>
+  <div class="flex flex-col md:flex-row gap-10 md:gap-14 items-start mb-16">
+
+    <%# Photo %>
+    <div class="shrink-0">
+      <div class="rounded-full overflow-hidden" style="width:140px;height:140px;border:3px solid var(--color-doux)">
+        <img src="/assets/nicolas_goarant.png"
+             alt="Nicolas Goarant"
+             class="w-full h-full object-cover">
+      </div>
+    </div>
+
+    <%# Texte %>
+    <div>
+      <p class="font-serif font-medium mb-1" style="font-size:1.2rem;color:var(--color-encre)">Nicolas Goarant</p>
+      <p class="mb-5" style="font-size:0.9rem;color:var(--color-accent)">
+        Auteur · Ancien collaborateur parlementaire · Développeur
+      </p>
+      <p class="leading-relaxed mb-4" style="color:var(--color-ardoise)">
+        Je ne suis pas médecin. J'ai été pendant quinze ans collaborateur de cabinets politiques,
+        au plus près des décisions publiques sur la santé, le médico-social, les politiques territoriales.
+        Et j'ai vu — autour de moi, dans mon entourage — ce que traversent les personnes qui cherchent
+        un nom à ce qu'elles ressentent.
+      </p>
+      <p class="leading-relaxed" style="color:var(--color-ardoise)">
+        En 2020, j'ai publié <em>Le Sommeil Malmené</em> aux Éditions de l'Aube — une exploration
+        de ce que le sommeil dit de nos sociétés. Ce travail m'a confronté à la façon dont certaines
+        souffrances ne trouvent pas de mots, donc pas de médecins, donc pas de diagnostic.
+        Nommer est né de cette conviction.
+      </p>
+    </div>
+  </div>
+
+  <%# ── BLOC CITATION ── %>
+  <div class="rounded-3xl px-10 py-10 mb-16" style="background:var(--color-encre)">
+    <p class="font-serif leading-relaxed text-white mb-6" style="font-size:1.3rem;font-style:italic">
+      «&nbsp;Avoir un mot pour ce qu'on ressent,
+      c'est déjà commencer à être entendu.&nbsp;»
+    </p>
+    <p style="color:var(--color-accent);font-size:0.88rem;font-weight:500">
+      — Principe fondateur de Nommer
+    </p>
+  </div>
+
+  <%# ── CE QUE NOMMER EST ── %>
+  <div class="mb-16">
+    <h2 class="font-serif font-semibold mb-8" style="font-size:1.5rem;color:var(--color-encre)">
+      Ce que Nommer est — et n'est pas
+    </h2>
+
+    <div class="space-y-0" style="border:1px solid var(--color-doux);border-radius:1.25rem;overflow:hidden">
+
+      <%# EST %>
+      <div class="px-7 py-6" style="border-bottom:1px solid var(--color-doux)">
+        <div class="flex gap-4 items-start">
+          <span style="color:#16A34A;font-size:1.2rem;margin-top:0.1rem">✓</span>
+          <div>
+            <p class="font-medium mb-1" style="color:var(--color-encre)">Un outil de documentation personnelle</p>
+            <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.6">
+              Le journal de bord vous permet de consigner vos symptômes, consultations et examens
+              dans le temps — pour ne plus arriver les mains vides chez votre médecin.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-7 py-6" style="border-bottom:1px solid var(--color-doux)">
+        <div class="flex gap-4 items-start">
+          <span style="color:#16A34A;font-size:1.2rem;margin-top:0.1rem">✓</span>
+          <div>
+            <p class="font-medium mb-1" style="color:var(--color-encre)">Un outil d'orientation et de préparation</p>
+            <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.6">
+              Les fiches pathologies et le questionnaire IA vous aident à mettre des mots sur ce que
+              vous vivez et à préparer vos consultations avec des questions pertinentes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-7 py-6" style="border-bottom:1px solid var(--color-doux)">
+        <div class="flex gap-4 items-start">
+          <span style="color:#16A34A;font-size:1.2rem;margin-top:0.1rem">✓</span>
+          <div>
+            <p class="font-medium mb-1" style="color:var(--color-encre)">Un espace de reconnaissance</p>
+            <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.6">
+              Lire que d'autres ont entendu les mêmes phrases dilatoires, vécu la même errance —
+              ça ne guérit pas, mais ça brise l'isolement.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <%# N'EST PAS %>
+      <div class="px-7 py-6" style="border-bottom:1px solid var(--color-doux);background:rgba(228,221,212,0.25)">
+        <div class="flex gap-4 items-start">
+          <span style="color:var(--color-accent);font-size:1.2rem;margin-top:0.1rem">✗</span>
+          <div>
+            <p class="font-medium mb-1" style="color:var(--color-encre)">Pas un outil de diagnostic médical</p>
+            <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.6">
+              Les pistes proposées par le questionnaire IA sont des <strong>hypothèses à explorer
+              avec un professionnel de santé</strong>, pas des diagnostics. Aucune information
+              sur Nommer ne se substitue à une consultation médicale.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-7 py-6" style="background:rgba(228,221,212,0.25)">
+        <div class="flex gap-4 items-start">
+          <span style="color:var(--color-accent);font-size:1.2rem;margin-top:0.1rem">✗</span>
+          <div>
+            <p class="font-medium mb-1" style="color:var(--color-encre)">Pas une communauté médicale</p>
+            <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.6">
+              Nommer oriente vers des associations de patients et des groupes d'entraide existants,
+              mais ne produit ni conseils thérapeutiques ni protocoles de traitement.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <%# ── POURQUOI L'IA ── %>
+  <div class="mb-16">
+    <h2 class="font-serif font-semibold mb-5" style="font-size:1.5rem;color:var(--color-encre)">
+      Pourquoi l'intelligence artificielle&nbsp;?
+    </h2>
+    <p class="leading-relaxed mb-4" style="color:var(--color-ardoise)">
+      Le questionnaire de Nommer utilise l'API Claude d'Anthropic pour analyser la description
+      libre de vos symptômes. Ce choix n'est pas anodin : la langue naturelle — imprécise,
+      émotionnelle, parfois confuse — est exactement celle qu'on utilise pour décrire ce qu'on
+      ressent. Un formulaire à cases à cocher n'aurait pas su l'accueillir.
+    </p>
+    <p class="leading-relaxed" style="color:var(--color-ardoise)">
+      L'IA ne pose pas de diagnostic. Elle fait ce que fait un ami bien informé : elle écoute,
+      propose des pistes, et vous aide à poser les bonnes questions.
+    </p>
+  </div>
+
+  <%# ── DONNÉES PERSONNELLES ── %>
+  <div class="rounded-2xl px-7 py-6 mb-16" style="background:white;border:1px solid var(--color-doux)">
+    <p class="font-medium mb-2" style="color:var(--color-encre)">🔒 Vos données vous appartiennent</p>
+    <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.6">
+      Le journal de bord est strictement personnel et confidentiel. Vos entrées ne sont
+      jamais partagées, vendues ni utilisées pour entraîner un modèle. Les descriptions
+      envoyées au questionnaire IA transitent via l'API Anthropic dans le respect de
+      leur politique de confidentialité, sans stockage nominatif.
+    </p>
+  </div>
+
+  <%# ── CONTACT ── %>
+  <div class="mb-16">
+    <h2 class="font-serif font-semibold mb-4" style="font-size:1.5rem;color:var(--color-encre)">
+      Une remarque, un témoignage&nbsp;?
+    </h2>
+    <p class="leading-relaxed mb-5" style="color:var(--color-ardoise)">
+      Nommer est un projet en cours de construction. Si vous avez vécu l'errance médicale,
+      si une pathologie manque, si une information vous semble inexacte — écrivez-moi.
+      Chaque retour compte.
+    </p>
+    <a href="mailto:contact@nommer.fr"
+       class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-opacity hover:opacity-80"
+       style="background:var(--color-encre);color:white;font-size:0.95rem">
+      ✉ contact@nommer.fr
+    </a>
+  </div>
+
+  <%# ── CTA ── %>
+  <div class="rounded-3xl p-10 text-center" style="background:var(--color-encre)">
+    <h2 class="font-serif font-semibold text-white mb-3" style="font-size:1.6rem">
+      Commencer à nommer
+    </h2>
+    <p class="mb-8" style="color:rgba(255,255,255,0.65);font-size:0.95rem">
+      Décrivez ce que vous ressentez. Sans formulaire, sans cases à cocher.
+    </p>
+    <div class="flex items-center justify-center gap-4 flex-wrap">
+      <%= link_to "Tester mes symptômes →", new_diagnostic_path,
+          class: "inline-block px-8 py-4 rounded-full font-medium transition-opacity hover:opacity-85",
+          style: "background:var(--color-accent);color:white" %>
+      <%= link_to "Voir les pathologies", pathologies_path,
+          class: "inline-block px-8 py-4 rounded-full font-medium transition-opacity hover:opacity-70",
+          style: "border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8)" %>
+    </div>
+  </div>
+
+</div>

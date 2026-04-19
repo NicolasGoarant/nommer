@@ -1,0 +1,214 @@
+<div class="max-w-3xl mx-auto px-6 py-10">
+
+  <%= link_to "← Toutes les pathologies", pathologies_path,
+      class: "text-sm hover:underline inline-block mb-8",
+      style: "color:var(--color-ardoise)" %>
+
+  <%# ── HEADER ── %>
+  <div class="rounded-3xl overflow-hidden mb-12 relative" style="min-height:200px;background:var(--color-encre)">
+    <% if @pathology.image_url.present? %>
+      <img src="<%= @pathology.image_url %>" alt="<%= @pathology.name %>"
+           class="absolute inset-0 w-full h-full object-cover"
+           style="opacity:0.25;filter:saturate(0.5)">
+    <% end %>
+    <div class="relative z-10 p-10">
+      <p class="text-xs tracking-widest uppercase font-medium mb-3" style="color:var(--color-accent)">
+        <%= Pathology::CATEGORIES[@pathology.category] %>
+      </p>
+      <h1 class="font-serif font-semibold text-white mb-5" style="font-size:2.5rem;line-height:1.15">
+        <%= @pathology.name %>
+      </h1>
+      <div class="flex items-center gap-6 flex-wrap" style="color:rgba(255,255,255,0.65);font-size:0.9rem">
+        <% if @pathology.nb_patients_label.present? %>
+          <span>🫂 <%= @pathology.nb_patients_label %></span>
+        <% end %>
+        <% if @pathology.avg_diagnosis_delay %>
+          <span>⏱ Environ <%= @pathology.avg_diagnosis_delay_text %> d'errance en moyenne</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%# ── DESCRIPTION + SYMPTÔMES ── %>
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-10 mb-14">
+    <div class="md:col-span-3">
+      <p class="leading-relaxed mb-8" style="color:var(--color-ardoise);font-size:1.05rem">
+        <%= @pathology.description %>
+      </p>
+      <h2 class="font-serif font-semibold mb-4" style="font-size:1.25rem;color:var(--color-encre)">
+        Symptômes fréquents
+      </h2>
+      <%
+        symptom_emojis = {
+          "douleur" => "🔴", "douleurs" => "🔴",
+          "fatigue" => "😔", "épuisement" => "😔",
+          "sommeil" => "😴", "insomnie" => "😴", "réparateur" => "😴",
+          "cognitif" => "🤯", "cognitifs" => "🤯", "mémoire" => "🤯",
+          "concentration" => "🤯", "brouillard" => "🤯", "mental" => "🤯",
+          "tête" => "🧠", "céphalée" => "🧠", "migraine" => "🧠",
+          "articulaire" => "🦴", "articulaires" => "🦴",
+          "raideur" => "🦴", "gonflement" => "🦴", "luxations" => "🦴",
+          "règles" => "🩸", "menstruel" => "🩸", "saignement" => "🩸",
+          "pelvienne" => "🩺", "pelviennes" => "🩺",
+          "humeur" => "🌊", "impulsivité" => "🌊", "émotionnel" => "🌊", "irritabilité" => "🌊",
+          "peau" => "🫧", "éruption" => "🫧", "acné" => "🫧", "cutané" => "🫧",
+          "poids" => "⚖️", "cheveux" => "💇", "chute" => "💇",
+          "digestif" => "🫁", "digestive" => "🫁", "abdominale" => "🫁",
+          "diarrhée" => "🫁", "constipation" => "🫁", "ballonnements" => "🫁",
+          "nausées" => "🤢", "vomissements" => "🤢",
+          "vision" => "👁️", "oculaire" => "👁️", "visuelle" => "👁️",
+          "palpitations" => "💓", "cardiaque" => "💓",
+          "anxiété" => "😰", "panique" => "😰",
+          "dépression" => "😞", "dépressif" => "😞",
+          "étourdissements" => "💫", "malaises" => "💫", "vertiges" => "💫",
+          "sécheresse" => "🫙",
+          "engourdissements" => "⚡", "fourmillements" => "⚡", "paralysie" => "⚡",
+          "fièvre" => "🌡️", "inflammation" => "🌡️", "sensibilité" => "🌡️",
+          "infertilité" => "👶", "hyperlaxité" => "🤸",
+          "somnolence" => "😪", "endormissement" => "😪", "cataplexie" => "😪",
+          "cycles" => "📅", "irréguliers" => "📅",
+          "aphte" => "👄", "buccal" => "👄",
+          "pilosité" => "🪒", "excessive" => "🪒",
+          "motrice" => "🚶", "équilibre" => "🚶",
+          "urinaire" => "🚿", "soleil" => "☀️",
+          "default" => "🩺"
+        }
+      %>
+      <ul class="space-y-2.5">
+        <% @pathology.key_symptoms_array.each do |s| %>
+          <%
+            emoji = symptom_emojis["default"]
+            symptom_emojis.each do |key, val|
+              next if key == "default"
+              if s.downcase.include?(key); emoji = val; break; end
+            end
+          %>
+          <li class="flex items-start gap-3" style="color:var(--color-ardoise)">
+            <span class="shrink-0" style="margin-top:0.15rem"><%= emoji %></span>
+            <span><%= s %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%# Infos secondaires — colonne droite %>
+    <div class="md:col-span-2 space-y-6" style="font-size:0.9rem">
+      <% if @pathology.bias_notes.present? %>
+        <div style="border-left:3px solid var(--color-accent);padding-left:1rem">
+          <p class="font-medium mb-1.5" style="color:var(--color-encre)">🔎 Pourquoi ça tarde</p>
+          <p style="color:var(--color-ardoise);line-height:1.6"><%= @pathology.bias_notes %></p>
+        </div>
+      <% end %>
+      <% if @pathology.what_to_ask.present? %>
+        <div style="border-left:3px solid var(--color-doux);padding-left:1rem">
+          <p class="font-medium mb-1.5" style="color:var(--color-encre)">💬 À dire au médecin</p>
+          <p style="color:var(--color-ardoise);line-height:1.6"><%= @pathology.what_to_ask %></p>
+        </div>
+      <% end %>
+      <% if @pathology.key_exams.present? %>
+        <div style="border-left:3px solid var(--color-doux);padding-left:1rem">
+          <p class="font-medium mb-1.5" style="color:var(--color-encre)">🧪 Examens clés</p>
+          <p style="color:var(--color-ardoise);line-height:1.6"><%= @pathology.key_exams %></p>
+        </div>
+      <% end %>
+      <% if @pathology.association_name.present? %>
+        <div style="border-left:3px solid var(--color-doux);padding-left:1rem">
+          <p class="font-medium mb-1.5" style="color:var(--color-encre)">Association</p>
+          <%= link_to @pathology.association_name, @pathology.association_url,
+              target: "_blank", class: "hover:underline",
+              style: "color:var(--color-accent)" %>
+        </div>
+      <% end %>
+      <% if @pathology.whatsapp_url.present? %>
+        <%= link_to @pathology.whatsapp_url, target: "_blank",
+            class: "inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-medium transition-opacity hover:opacity-85",
+            style: "background:#25D366;color:white;font-size:0.88rem" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Groupe WhatsApp
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <%# ── PHRASES DILATOIRES — style éditorial ── %>
+  <% dismissive = JSON.parse(@pathology.dismissive_phrases || "[]") rescue [] %>
+  <% if dismissive.any? %>
+    <div class="mb-14 -mx-6 px-6 py-12" style="background:var(--color-encre)">
+      <p class="text-xs tracking-widest uppercase font-medium mb-8 text-center" style="color:var(--color-accent)">
+        Ce qu'on vous a peut-être dit
+      </p>
+      <div class="space-y-6 max-w-xl mx-auto">
+        <% dismissive.each do |phrase| %>
+          <p class="font-serif text-center leading-relaxed" style="color:rgba(255,255,255,0.75);font-size:1.2rem;font-style:italic">
+            "<%=phrase %>"
+          </p>
+        <% end %>
+      </div>
+      <p class="text-center mt-8 text-sm" style="color:rgba(255,255,255,0.35)">
+        Si vous reconnaissez ces phrases, vous n'êtes pas seul·e.
+      </p>
+    </div>
+  <% end %>
+
+  <%# ── VIDÉO ── %>
+  <% if @pathology.youtube_id.present? %>
+    <div class="mb-12">
+      <h2 class="font-serif font-semibold mb-5" style="font-size:1.25rem;color:var(--color-encre)">
+        Témoignage vidéo
+      </h2>
+      <div class="rounded-2xl overflow-hidden relative"
+           style="height:360px;background:var(--color-encre);cursor:pointer"
+           onclick="this.innerHTML='<iframe width=100% height=360 src=https://www.youtube.com/embed/<%= @pathology.youtube_id %>?autoplay=1 frameborder=0 allow=autoplay allowfullscreen></iframe>'">
+        <img src="https://img.youtube.com/vi/<%= @pathology.youtube_id %>/maxresdefault.jpg"
+             class="absolute inset-0 w-full h-full object-cover" style="opacity:0.5">
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <div style="width:68px;height:68px;background:var(--color-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="font-medium" style="color:white">Voir le témoignage</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%# ── TÉMOIGNAGES ── %>
+  <% testimonials = JSON.parse(@pathology.testimonials || "[]") rescue [] %>
+  <% if testimonials.any? %>
+    <div class="mb-12">
+      <h2 class="font-serif font-semibold mb-6" style="font-size:1.25rem;color:var(--color-encre)">
+        Ils en parlent
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <% testimonials.each_with_index do |t, i| %>
+          <% avatars = ["👩", "👨", "🧑", "👩‍🦱", "👨‍🦳", "👩‍🦰", "🧔", "👱‍♀️"] %>
+          <div class="rounded-2xl p-6" style="background:white;border:1px solid var(--color-doux)">
+            <p class="italic leading-relaxed mb-5" style="color:var(--color-encre)">
+              «&nbsp;<%= t["quote"] %>&nbsp;»
+            </p>
+            <div class="flex items-center gap-3">
+              <span style="font-size:1.8rem;line-height:1"><%= avatars[i % avatars.length] %></span>
+              <span class="font-medium text-sm" style="color:var(--color-accent)">— <%= t["initials"] %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# ── CTA ── %>
+  <div class="rounded-3xl p-10 text-center" style="background:var(--color-encre)">
+    <h2 class="font-serif font-semibold text-white mb-3" style="font-size:1.6rem">
+      Ces symptômes vous parlent&nbsp;?
+    </h2>
+    <p class="mb-8" style="color:rgba(255,255,255,0.65);font-size:0.95rem">
+      Décrivez ce que vous ressentez. Notre outil analyse votre profil<br>
+      et vous propose des pistes à explorer avec votre médecin.
+    </p>
+    <%= link_to "Analyser mes symptômes →", new_diagnostic_path,
+        class: "inline-block px-8 py-4 rounded-full font-medium transition-opacity hover:opacity-85",
+        style: "background:var(--color-accent);color:white" %>
+  </div>
+
+</div>

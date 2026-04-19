@@ -1,0 +1,81 @@
+<div class="max-w-2xl mx-auto">
+  <div class="text-center mb-12">
+    <p class="text-xs tracking-widest uppercase font-medium mb-4" style="color:var(--color-accent)">Résultat de l'analyse</p>
+    <h1 class="text-4xl font-serif font-semibold mb-5" style="color:var(--color-encre)">
+      Pistes à explorer
+    </h1>
+    <p class="text-base" style="color:var(--color-ardoise)">
+      Ces pathologies sont fréquemment associées à votre profil de symptômes.<br>
+      <strong>À discuter avec votre médecin</strong> — ce n'est pas un diagnostic.
+    </p>
+  </div>
+
+  <% if @result.blank? %>
+    <div class="rounded-2xl p-10 text-center" style="background:white;border:1px solid var(--color-doux)">
+      <p class="font-serif text-xl mb-3" style="color:var(--color-encre)">Pas de piste identifiée</p>
+      <p class="text-sm mb-6" style="color:var(--color-ardoise)">
+        Les informations fournies ne correspondent pas clairement à une pathologie
+        documentée dans notre base. Essayez de détailler davantage vos symptômes.
+      </p>
+      <%= link_to "Réessayer", new_diagnostic_path,
+          class: "px-6 py-3 rounded-full text-sm font-medium text-white",
+          style: "background:var(--color-encre)" %>
+    </div>
+  <% else %>
+    <div class="space-y-6 mb-12">
+      <% @result.each_with_index do |r, i| %>
+        <div class="rounded-2xl p-8" style="background:white;border:1px solid var(--color-doux)">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <span class="text-xs font-medium tracking-widest uppercase mr-3" style="color:var(--color-ardoise)">Piste <%= i + 1 %></span>
+              <h2 class="text-2xl font-serif font-semibold mt-1" style="color:var(--color-encre)"><%= r["name"] %></h2>
+            </div>
+            <% pathology = Pathology.find_by(slug: r["slug"]) %>
+            <% if pathology %>
+              <%= link_to "Voir la fiche →", pathology_path(pathology.slug),
+                  class: "text-xs shrink-0 ml-4 hover:underline", style: "color:var(--color-accent)" %>
+            <% end %>
+          </div>
+
+          <p class="text-sm leading-relaxed mb-5" style="color:var(--color-ardoise)"><%= r["reasoning"] %></p>
+
+          <% if r["matched_symptoms"]&.any? %>
+            <div class="mb-5">
+              <p class="text-xs uppercase tracking-widest font-medium mb-2" style="color:var(--color-ardoise)">Symptômes correspondants</p>
+              <div class="flex flex-wrap gap-2">
+                <% r["matched_symptoms"].each do |s| %>
+                  <span class="px-3 py-1 rounded-full text-xs" style="background:var(--color-creme);color:var(--color-encre)"><%= s %></span>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <% if r["next_steps"].present? %>
+            <div class="rounded-xl p-4 text-xs leading-relaxed" style="background:#F0F9F4;color:#2D6A4F">
+              <strong>À demander à votre médecin :</strong> <%= r["next_steps"] %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <%# CTA journal %>
+    <div class="rounded-3xl p-10 text-center" style="background:var(--color-encre)">
+      <h2 class="text-2xl font-serif font-semibold text-white mb-3">
+        Préparez votre prochaine consultation
+      </h2>
+      <p class="text-sm mb-8" style="color:rgba(255,255,255,0.7)">
+        Créez votre journal de bord médical pour documenter vos symptômes,
+        générer une synthèse à apporter à votre médecin, et suivre votre parcours.
+      </p>
+      <div class="flex items-center justify-center gap-4">
+        <%= link_to "Créer mon journal", new_user_registration_path,
+            class: "px-8 py-4 rounded-full font-medium transition-opacity hover:opacity-85",
+            style: "background:var(--color-accent);color:white" %>
+        <%= link_to "Réanalyser", new_diagnostic_path,
+            class: "px-8 py-4 rounded-full font-medium border transition-opacity hover:opacity-70",
+            style: "border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.7)" %>
+      </div>
+    </div>
+  <% end %>
+</div>

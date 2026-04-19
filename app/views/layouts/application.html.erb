@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nommer — Et si c'était ça ?</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind",    "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <style>
+      #mobile-menu { display: none; }
+      #mobile-menu.open { display: block; }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col" style="background:var(--color-creme)">
+
+    <nav style="background:rgba(247,244,239,0.96);border-bottom:1px solid var(--color-doux)" class="sticky top-0 z-50 backdrop-blur-sm">
+
+      <%# Desktop — logo gauche, nav droite %>
+      <div class="hidden md:flex items-center justify-between px-8" style="height:4.5rem">
+        <%= link_to root_path, class: "inline-flex items-center gap-2" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28">
+            <circle cx="16" cy="16" r="14" fill="#1C2B3A"/>
+            <circle cx="16" cy="16" r="5" fill="#C0785A"/>
+            <circle cx="16" cy="16" r="2" fill="#F7F4EF"/>
+          </svg>
+          <span class="font-serif font-semibold" style="font-size:1.2rem;color:var(--color-encre)">Nommer</span>
+        <% end %>
+        <div class="flex items-center gap-5" style="font-size:0.92rem">
+          <%= link_to "À propos", about_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+          <%= link_to "Pathologies", pathologies_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+          <% if user_signed_in? %>
+            <%= link_to "Mon journal", journal_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+            <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+          <% else %>
+            <%= link_to "Connexion", new_user_session_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+          <% end %>
+          <%= link_to "Tester mes symptômes", new_diagnostic_path,
+              class: "px-4 py-2 rounded-full font-medium transition-opacity hover:opacity-80 whitespace-nowrap",
+              style: "background:var(--color-accent);color:white;font-size:0.88rem" %>
+        </div>
+      </div>
+
+      <%# Mobile — logo + burger %>
+      <div class="md:hidden flex items-center justify-between px-5" style="height:4rem">
+        <%= link_to root_path, class: "inline-flex items-center gap-2" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24">
+            <circle cx="16" cy="16" r="14" fill="#1C2B3A"/>
+            <circle cx="16" cy="16" r="5" fill="#C0785A"/>
+            <circle cx="16" cy="16" r="2" fill="#F7F4EF"/>
+          </svg>
+          <span class="font-serif font-semibold" style="font-size:1.05rem;color:var(--color-encre)">Nommer</span>
+        <% end %>
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('open')"
+                class="flex flex-col justify-center gap-1.5 w-10 h-10 items-center" aria-label="Menu">
+          <span class="block w-6 h-0.5 rounded" style="background:var(--color-encre)"></span>
+          <span class="block w-6 h-0.5 rounded" style="background:var(--color-encre)"></span>
+          <span class="block w-6 h-0.5 rounded" style="background:var(--color-encre)"></span>
+        </button>
+      </div>
+
+      <%# Menu mobile %>
+      <div id="mobile-menu" style="background:rgba(247,244,239,0.98);border-top:1px solid var(--color-doux)">
+        <div class="px-6 py-6 flex flex-col gap-5" style="font-size:1.05rem">
+          <%= link_to "À propos", about_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+          <%= link_to "Pathologies", pathologies_path, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
+          <% if user_signed_in? %>
+            <%= link_to "Mon journal", journal_path, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
+            <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, style: "color:var(--color-ardoise)" %>
+          <% else %>
+            <%= link_to "Connexion", new_user_session_path, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
+          <% end %>
+          <%= link_to "Tester mes symptômes →", new_diagnostic_path,
+              class: "inline-block px-6 py-3 rounded-full font-medium text-center",
+              style: "background:var(--color-accent);color:white",
+              onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
+        </div>
+      </div>
+
+    </nav>
+
+    <% if notice.present? %>
+      <div class="max-w-5xl mx-auto px-6 pt-4 w-full">
+        <div class="rounded-xl px-4 py-3" style="background:#D1FAE5;color:#065F46;font-size:0.95rem"><%= notice %></div>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="max-w-5xl mx-auto px-6 pt-4 w-full">
+        <div class="rounded-xl px-4 py-3" style="background:#FEE2E2;color:#991B1B;font-size:0.95rem"><%= alert %></div>
+      </div>
+    <% end %>
+
+    <main class="flex-1 w-full"><%= yield %></main>
+
+    <footer style="border-top:1px solid var(--color-doux)" class="mt-20 py-10">
+      <div class="max-w-5xl mx-auto px-6 flex items-center justify-between" style="font-size:0.9rem;color:var(--color-ardoise)">
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20">
+            <circle cx="16" cy="16" r="14" fill="#1C2B3A"/>
+            <circle cx="16" cy="16" r="5" fill="#C0785A"/>
+            <circle cx="16" cy="16" r="2" fill="#F7F4EF"/>
+          </svg>
+          <span>Nommer — outil de documentation personnelle, pas un diagnostic médical.</span>
+        </div>
+        <div class="hidden md:flex gap-6">
+          <%= link_to "À propos", about_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+          <%= link_to "Pathologies", pathologies_path, class: "hover:underline" %>
+          <%= link_to "Tester", new_diagnostic_path, class: "hover:underline" %>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
