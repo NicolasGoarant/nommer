@@ -56,6 +56,60 @@ pathologies = [
   # ─── FATIGUE CHRONIQUE ──────────────────────────────────────────────────────
 
   {
+    name: "Lombalgie chronique méconnue",
+    slug: "lombalgie-chronique",
+    category: "douleur_chronique",
+    avg_diagnosis_delay: 120,
+    description: "La lombalgie chronique — douleur du bas du dos persistant plus de 3 mois — touche 8 à 10 millions de personnes en France. Elle est trop souvent qualifiée de 'non spécifique' sans que les causes structurelles (protrusion ou hernie discale, spondylolisthésis, canal lombaire étroit, spondylarthrite débutante) aient été cherchées par imagerie. Des années de kiné générale, d'ostéopathie, de semelles orthopédiques ou d'antalgiques peuvent ainsi s'écouler avant qu'une IRM ne révèle la cause réelle et permette un traitement adapté.",
+    key_symptoms: ["douleur du bas du dos persistant depuis plus de 3 mois", "douleur irradiant dans la fesse ou la jambe (sciatique)", "raideur matinale", "aggravation en position assise prolongée", "douleur qui réveille la nuit", "fourmillements ou engourdissements dans la jambe", "sensation de faiblesse musculaire"],
+    key_exams: "IRM lombaire (examen de référence) · Radiographie du rachis lombaire · Scanner lombaire · Électromyogramme si atteinte neurologique · Consultation en rhumatologie ou neurochirurgie",
+    bias_notes: "La lombalgie est trop souvent traitée comme fonctionnelle sans imagerie. Le diagnostic de 'lombalgie non spécifique' est fréquemment posé par défaut. Les recommandations médicales découragent parfois la prescription rapide d'une IRM, sous-estimant les causes structurelles. La douleur chronique est parfois psychiatrisée. Les femmes sont plus souvent orientées vers une prise en charge psychologique que vers l'imagerie.",
+    what_to_ask: "Ma douleur dure depuis plus de 3 mois malgré les traitements. Je n'ai jamais eu d'IRM lombaire — pourriez-vous m'en prescrire une ? La douleur irradie dans ma jambe / me réveille la nuit. Je souhaite un avis en rhumatologie ou neurochirurgie.",
+    dismissive_phrases: [
+      "Tout le monde a mal au dos, c'est normal.",
+      "Votre radio est normale, il n'y a rien de grave.",
+      "Il faut apprendre à vivre avec.",
+      "Faites du sport, ça ira mieux.",
+      "C'est probablement du stress ou une mauvaise posture."
+    ],
+    association_name: "Association Française de Lutte Anti-Rhumatismale (AFLAR)",
+    association_url: "https://www.aflar.org",
+    image_url: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600",
+    testimonials: [
+      { initials: "Nicolas, 44 ans", quote: "J'ai mal au dos depuis l'adolescence. Ostéopathes, podologues, dentiste pour le bruxisme, orthoptiste, posturologue — personne ne trouvait. C'est une IRM à 44 ans qui a révélé une protrusion discale. La kinésithérapie adaptée qui a suivi a tout changé." },
+      { initials: "Isabelle, 52 ans", quote: "Vingt ans de 'lombalgie non spécifique'. On me disait que mes radios étaient normales. L'IRM a montré un canal lombaire étroit. L'opération m'a rendu une vie normale." },
+      { initials: "Thomas, 38 ans", quote: "Ma douleur irradiait dans la jambe. Mon médecin pensait à du stress. J'ai insisté pour une IRM — hernie discale L4-L5. Sans cette imagerie, j'aurais continué à souffrir sans traitement adapté." }
+    ]
+  },
+  {
+    name: "Céphalées en grappe",
+    slug: "cephalees-en-grappe",
+    category: "douleur_chronique",
+    avg_diagnosis_delay: 48,
+    description: "Les céphalées en grappe sont considérées comme l'une des douleurs les plus intenses que l'être humain puisse ressentir. Ces crises de douleur unilatérale fulgurante autour de l'œil surviennent par périodes ('grappes') de plusieurs semaines, parfois à heure fixe. Elles touchent environ 200 000 personnes en France, majoritairement des hommes, et sont fréquemment confondues avec des migraines pendant des années.",
+    key_symptoms: ["douleur unilatérale atroce autour ou derrière un œil", "crises durant 15 minutes à 3 heures", "larmoiement et rougeur oculaire du côté atteint", "nez bouché ou qui coule", "agitation intense pendant la crise", "crises à heure fixe, souvent la nuit", "séries de crises pendant plusieurs semaines puis rémission"],
+    key_exams: "Consultation neurologique spécialisée · IRM cérébrale (pour éliminer une cause secondaire) · Agenda des céphalées · Centre spécialisé douleur ou céphalées",
+    bias_notes: "Souvent confondu avec les migraines pendant des années malgré un profil clinique très différent. L'agitation pendant la crise (contrairement à la migraine où le patient se couche) est un signe clé méconnu. Le délai moyen de diagnostic est de 4 à 7 ans. La douleur est tellement intense qu'elle peut mener à des pensées suicidaires, ce qui est rarement pris en compte.",
+    what_to_ask: "Mes céphalées sont-elles toujours du même côté ? Durent-elles moins de 3 heures ? Je suis agité·e pendant la crise et ne peux pas rester allongé·e. Pourrait-il s'agir de céphalées en grappe ? Je souhaite consulter un neurologue spécialisé.",
+    dismissive_phrases: [
+      "C'est une migraine, prenez du paracétamol.",
+      "Les hommes exagèrent leur douleur.",
+      "C'est du stress, gérez mieux votre vie.",
+      "Votre IRM est normale, ce n'est pas neurologique.",
+      "Les maux de tête ça n'est pas grave."
+    ],
+    association_name: "AFCG — Association Française contre les Céphalées en Grappe",
+    association_url: "https://www.afcg.net",
+    image_url: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?w=600",
+    testimonials: [
+      { initials: "Julien, 36 ans", quote: "7 ans diagnostiqué 'migraineux atypique'. Le triptan ne faisait rien. C'est un neurologue qui a posé le diagnostic de grappe en 10 minutes d'interrogatoire." },
+      { initials: "Marc, 42 ans", quote: "Les crises à 3h du matin, tous les jours pendant 6 semaines. Une douleur à laquelle aucun médecin ne m'avait préparé. On m'a dit que c'était du stress." }
+    ]
+  },
+
+  # ─── FATIGUE CHRONIQUE ──────────────────────────────────────────────────────
+
+  {
     name: "Syndrome de fatigue chronique (ME/CFS)",
     slug: "syndrome-fatigue-chronique",
     category: "fatigue",
@@ -233,6 +287,57 @@ pathologies = [
       { initials: "S., 27 ans", quote: "On traitait mon anxiété sans chercher la cause. C'était en réalité une thyroïdite de Hashimoto qui la provoquait." }
     ]
   },
+  {
+    name: "Schizophrénie",
+    slug: "schizophrenie",
+    category: "psychiatrie",
+    avg_diagnosis_delay: 84,
+    description: "La schizophrénie est un trouble psychiatrique sévère touchant environ 600 000 personnes en France. Elle se manifeste par des hallucinations, des idées délirantes, une désorganisation de la pensée et des symptômes dits 'négatifs' (repli, perte de motivation, émoussement affectif). Dans trois quarts des cas, elle ne s'installe pas brutalement mais par des signes précurseurs discrets — anxiété, isolement, baisse des performances — souvent attribués à d'autres causes. Le diagnostic est retardé de 7 ans en moyenne, notamment en raison de la stigmatisation et de la confusion fréquente avec la dépression, le trouble bipolaire ou un trouble anxieux.",
+    key_symptoms: ["hallucinations auditives (voix, bruits inexpliqués)", "idées délirantes (sentiment d'être suivi, messages cachés)", "désorganisation de la pensée et du discours", "repli social progressif et isolement", "perte de motivation et apathie", "baisse des performances scolaires ou professionnelles", "troubles du sommeil et de la concentration", "émoussement affectif"],
+    key_exams: "Évaluation psychiatrique approfondie · IRM cérébrale (pour exclure une cause organique) · Bilan biologique complet · Évaluation neuropsychologique · Consultation en centre spécialisé premier épisode psychotique (CPEP)",
+    bias_notes: "78 % des Français associent encore la schizophrénie à la dangerosité, un préjugé présent y compris chez les médecins généralistes. Cette stigmatisation retarde la consultation et le diagnostic. Les symptômes prodromiques — anxiété, isolement, baisse de performance — sont souvent attribués à la dépression ou au stress. La honte et l'autostigmatisation poussent les personnes concernées au silence.",
+    what_to_ask: "J'entends des voix ou des sons que les autres n'entendent pas. J'ai des pensées qui me semblent être imposées. Je me sens surveillé·e sans raison apparente. Mes proches disent que mon comportement a beaucoup changé. Demander une orientation vers un psychiatre ou un centre expert en primo-diagnostic.",
+    dismissive_phrases: [
+      "Vous êtes juste stressé·e, c'est normal à votre âge.",
+      "C'est une dépression, on va essayer des antidépresseurs.",
+      "Vous avez trop d'imagination.",
+      "Ce sont des angoisses, rien de psychiatrique.",
+      "Revenez si ça empire."
+    ],
+    association_name: "UNAFAM",
+    association_url: "https://www.unafam.org",
+    image_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
+    testimonials: [
+      { initials: "Lucas, 28 ans", quote: "Pendant 3 ans, j'ai cru que tout le monde entendait des voix comme moi. Mon généraliste pensait à de l'anxiété. C'est à l'hôpital, après une crise, qu'on a enfin posé le mot." },
+      { initials: "Mère de Sophie, 22 ans", quote: "Ma fille s'est isolée progressivement, ses notes ont chuté. On a pensé à une dépression, changé trois fois d'antidépresseurs. Deux ans plus tard, le diagnostic de schizophrénie a tout éclairé." },
+      { initials: "Karim, 34 ans", quote: "Je savais que quelque chose n'allait pas mais je n'osais pas en parler. La stigmatisation, ça paralyse. Il m'a fallu 7 ans pour consulter un psychiatre et obtenir un diagnostic." }
+    ]
+  },
+  {
+    name: "Trouble de la personnalité borderline",
+    slug: "trouble-borderline",
+    category: "psychiatrie",
+    avg_diagnosis_delay: 96,
+    description: "Le trouble de la personnalité borderline (TPB) se caractérise par une instabilité émotionnelle intense, des relations interpersonnelles tumultueuses, une image de soi fluctuante et des comportements impulsifs. Il touche 600 000 à 1 million de personnes en France. Longtemps méconnu ou stigmatisé, il est fréquemment confondu avec le trouble bipolaire, la dépression ou les troubles anxieux, retardant un diagnostic et une prise en charge adaptés.",
+    key_symptoms: ["instabilité émotionnelle intense et réactions disproportionnées", "peur intense de l'abandon réel ou imaginaire", "relations interpersonnelles instables et intenses", "image de soi instable et sentiment de vide chronique", "comportements impulsifs (achats, sexualité, substances)", "comportements d'automutilation ou menaces suicidaires", "dissociation en situation de stress"],
+    key_exams: "Évaluation psychiatrique structurée · Entretien diagnostique (SCID-II) · Consultation psychiatre spécialisé en troubles de la personnalité · Psychothérapie DBT (thérapie comportementale dialectique)",
+    bias_notes: "Le TPB est souvent mal compris et stigmatisé y compris dans le milieu médical. Les patients sont parfois étiquetés 'difficiles' ou 'manipulateurs'. Il est fréquemment confondu avec le trouble bipolaire (les antidépresseurs seuls peuvent aggraver certains symptômes). Le diagnostic est souvent refusé aux moins de 18 ans. Les femmes sont surdiagnostiquées, les hommes sous-diagnostiqués.",
+    what_to_ask: "Mes émotions sont-elles particulièrement intenses et difficiles à réguler ? Avez-vous envisagé un trouble de la personnalité borderline ? La thérapie DBT a-t-elle été évoquée ? Je souhaite une évaluation psychiatrique structurée.",
+    dismissive_phrases: [
+      "Vous êtes juste très émotif·ve, c'est votre caractère.",
+      "C'est un trouble bipolaire, on va ajuster le traitement.",
+      "Vous cherchez de l'attention avec ces comportements.",
+      "Le borderline c'est un diagnostic fourre-tout.",
+      "Vous devez apprendre à contrôler vos émotions."
+    ],
+    association_name: "AAPEL",
+    association_url: "https://www.aapel.org",
+    image_url: "https://images.unsplash.com/photo-1474314170901-ba7732e2c74c?w=600",
+    testimonials: [
+      { initials: "Camille, 29 ans", quote: "8 ans sous le diagnostic de bipolaire. Les médicaments ne changeaient rien. Une psychiatre a finalement évoqué le TPB et proposé la thérapie DBT. C'est la première fois qu'un traitement m'aidait vraiment." },
+      { initials: "Thomas, 33 ans", quote: "On me disait que j'étais 'trop intense', 'épuisant'. J'avais honte de mes réactions. Le diagnostic de borderline a tout expliqué — et m'a permis de comprendre que c'était une maladie, pas un défaut de caractère." }
+    ]
+  },
 
   # ─── MALADIES AUTO-IMMUNES ──────────────────────────────────────────────────
 
@@ -384,6 +489,56 @@ pathologies = [
     testimonials: [
       { initials: "M., 52 ans", quote: "6 ans avec des yeux qui brûlaient, une bouche toujours sèche. On me donnait des collyres. Le Sjögren a finalement été trouvé par hasard." },
       { initials: "F., 44 ans", quote: "J'avais honte de ma sécheresse buccale en réunion. On ne m'avait jamais dit que ça pouvait être une maladie auto-immune." }
+    ]
+  },
+  {
+    name: "Myasthénie grave",
+    slug: "myasthenie-grave",
+    category: "auto_immune",
+    avg_diagnosis_delay: 36,
+    description: "La myasthénie grave est une maladie auto-immune neuromusculaire dans laquelle le système immunitaire attaque les récepteurs de la jonction neuromusculaire. Elle provoque une faiblesse musculaire fluctuante, aggravée par l'effort et améliorée par le repos. Elle touche 15 000 à 20 000 personnes en France et est fréquemment confondue avec des troubles psychiatriques ou une dépression.",
+    key_symptoms: ["ptosis (chute d'une ou deux paupières)", "diplopie (vision double)", "faiblesse des membres aggravée par l'effort", "difficulté à mâcher ou avaler", "voix nasonnée ou déformée en fin de journée", "faiblesse respiratoire dans les formes sévères", "symptômes fluctuants, pires le soir"],
+    key_exams: "Dosage des anticorps anti-récepteurs à l'acétylcholine (anti-RACh) · Électromyogramme de répétition · Test au glaçon (ptosis) · Scanner thoracique (recherche thymome) · Consultation neurologique",
+    bias_notes: "La fluctuation des symptômes (meilleurs le matin, pires le soir) conduit souvent à les minimiser. Les formes oculaires pures restent longtemps non diagnostiquées. La faiblesse musculaire est parfois attribuée à la dépression ou à un trouble fonctionnel. Le risque de crise myasthénique (urgence respiratoire) est méconnu.",
+    what_to_ask: "Ma faiblesse musculaire s'aggrave-t-elle au cours de la journée ou à l'effort ? A-t-on dosé les anticorps anti-récepteurs à l'acétylcholine ? Pourrait-il s'agir d'une myasthénie ? Je souhaite un électromyogramme de répétition.",
+    dismissive_phrases: [
+      "Vous êtes juste fatigué·e, reposez-vous.",
+      "Les troubles visuels viennent de l'anxiété.",
+      "La difficulté à avaler c'est psychosomatique.",
+      "Vos analyses sont normales, il n'y a rien de grave.",
+      "C'est une dépression qui provoque cette faiblesse."
+    ],
+    association_name: "AFM-Téléthon / Myasthénie France",
+    association_url: "https://www.afm-telethon.fr",
+    image_url: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600",
+    testimonials: [
+      { initials: "Anne, 47 ans", quote: "Ma paupière tombait le soir. Mon ophtalmologue disait que c'était de la fatigue. Deux ans plus tard, un neurologue a posé le diagnostic de myasthénie en voyant l'électromyogramme." },
+      { initials: "Pierre, 55 ans", quote: "Je m'essoufflais à parler. On pensait à de l'anxiété. La crise myasthénique qui a suivi aurait pu être fatale si le bon diagnostic avait encore tardé." }
+    ]
+  },
+  {
+    name: "Sarcoïdose",
+    slug: "sarcoidose",
+    category: "auto_immune",
+    avg_diagnosis_delay: 24,
+    description: "La sarcoïdose est une maladie inflammatoire caractérisée par la formation de granulomes dans de nombreux organes, principalement les poumons, les ganglions lymphatiques, la peau et les yeux. Elle touche 40 000 à 60 000 personnes en France. Son caractère multisystémique et ses symptômes très variables en font une pathologie difficile à reconnaître, souvent confondue avec d'autres maladies.",
+    key_symptoms: ["toux sèche persistante et essoufflement", "fatigue chronique intense", "ganglions gonflés (cou, aisselles)", "lésions cutanées (nodules, plaques)", "douleurs articulaires", "troubles visuels", "fièvre et sueurs nocturnes", "douleurs thoraciques"],
+    key_exams: "Radiographie et scanner thoracique · Dosage de l'enzyme de conversion de l'angiotensine (ECA) · Biopsie d'une lésion accessible · Lavage broncho-alvéolaire · Consultation en médecine interne ou pneumologie",
+    bias_notes: "La sarcoïdose est souvent découverte fortuitement sur une radiographie. Ses nombreuses formes cliniques rendent le diagnostic difficile. Elle peut mimer une tuberculose, un lymphome ou d'autres maladies inflammatoires. La fatigue chronique est souvent sous-estimée comme symptôme. Elle touche plus fréquemment les personnes d'origine africaine ou antillaise.",
+    what_to_ask: "A-t-on dosé l'enzyme de conversion de l'angiotensine ? Un scanner thoracique a-t-il été réalisé ? Mes symptômes pourraient-ils évoquer une sarcoïdose ? Je souhaite une consultation en médecine interne.",
+    dismissive_phrases: [
+      "Cette toux vient de l'anxiété ou du tabac.",
+      "Les ganglions gonflés c'est une infection banale.",
+      "La fatigue intense c'est le quotidien de tout le monde.",
+      "Vos poumons sont normaux à l'auscultation.",
+      "Ces lésions cutanées ne sont pas inquiétantes."
+    ],
+    association_name: "Association Sarcoïdose France",
+    association_url: "https://www.sarcoidose.fr",
+    image_url: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600",
+    testimonials: [
+      { initials: "Nadia, 38 ans", quote: "Une toux sèche depuis 6 mois, des ganglions dans le cou. Mon médecin pensait à une infection. C'est une radiographie de contrôle qui a révélé des adénopathies hilaires — signe caractéristique de la sarcoïdose." },
+      { initials: "Jean-Marc, 45 ans", quote: "Trois spécialistes différents en deux ans — pneumologue, dermatologue, rhumatologue — chacun traitant son bout. C'est un interniste qui a fait le lien et posé le diagnostic." }
     ]
   },
 
@@ -750,6 +905,31 @@ pathologies = [
     testimonials: [
       { initials: "C., 24 ans", quote: "Un an de saignements attribués aux hémorroïdes. La coloscopie a finalement montré une rectocolite étendue. Un an de traitement inadapté." }
     ]
+  },
+  {
+    name: "Cystite interstitielle",
+    slug: "cystite-interstitielle",
+    category: "digestif",
+    avg_diagnosis_delay: 60,
+    description: "La cystite interstitielle (ou syndrome de la vessie douloureuse) est une maladie chronique de la vessie provoquant des douleurs pelviennes intenses et une envie fréquente et urgente d'uriner sans infection bactérienne. Elle touche 100 000 à 200 000 personnes en France, majoritairement des femmes. C'est l'une des pathologies féminines les plus méconnues, avec un délai diagnostique moyen de 5 à 7 ans.",
+    key_symptoms: ["douleurs pelviennes chroniques", "envies fréquentes et urgentes d'uriner (jusqu'à 60 fois/jour)", "douleur soulagée momentanément par la miction", "douleurs lors des rapports sexuels", "douleurs aggravées par certains aliments (café, épices, alcool)", "absence de bactéries dans les urines malgré les symptômes"],
+    key_exams: "Cystoscopie avec biopsie · Journal mictionnel · Test au potassium · Bilan urodynamique · Consultation en urologie spécialisée · Éliminer infections (ECBU répétés)",
+    bias_notes: "La cystite interstitielle est systématiquement confondue avec des infections urinaires récidivantes. Des années d'antibiotiques inefficaces précèdent souvent le diagnostic. Les ECBU revenant négatifs sont interprétés comme rassurants plutôt que comme un indice diagnostique. La douleur chronique est fréquemment psychiatrisée chez les femmes.",
+    what_to_ask: "Mes ECBU sont toujours négatifs malgré des symptômes de cystite — pourrait-il s'agir d'une cystite interstitielle ? Une cystoscopie a-t-elle été envisagée ? Je souhaite consulter un urologue spécialisé.",
+    dismissive_phrases: [
+      "Votre ECBU est négatif, vous n'avez pas d'infection.",
+      "C'est de l'anxiété qui provoque ces urgences.",
+      "Buvez plus d'eau, ça passera.",
+      "Vous avez simplement une vessie hyperactive.",
+      "Ce n'est pas grave, apprenez à vivre avec."
+    ],
+    association_name: "Association Française de la Cystite Interstitielle",
+    association_url: "https://www.cystite-interstitielle.fr",
+    image_url: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600",
+    testimonials: [
+      { initials: "Sophie, 34 ans", quote: "6 ans de cystites 'à répétition' sans bactéries. Des dizaines de cures d'antibiotiques inutiles. Quand le mot cystite interstitielle a été prononcé, j'ai pleuré de soulagement." },
+      { initials: "Lucie, 41 ans", quote: "Je me levais 15 fois par nuit. Mon gynécologue pensait à de l'anxiété. Un urologue spécialisé a posé le diagnostic en une consultation grâce à mon journal mictionnel." }
+    ]
   }
 
 ]
@@ -805,7 +985,14 @@ nb_patients_data = {
   "intestin-irritable"        => "5 millions",
   "crohn"                     => "125 000",
   "rectocolite-hemorragique"  => "100 000",
-  "maladie-a-corps-de-lewy"  => "200 000 à 250 000 (67% non diagnostiqués)"
+  "maladie-a-corps-de-lewy"  => "200 000 à 250 000 (67% non diagnostiqués)",
+  "schizophrenie"             => "600 000",
+  "lombalgie-chronique"       => "8 à 10 millions",
+  "cephalees-en-grappe"       => "200 000",
+  "trouble-borderline"        => "600 000 à 1 million",
+  "myasthenie-grave"          => "15 000 à 20 000",
+  "sarcoidose"                => "40 000 à 60 000",
+  "cystite-interstitielle"    => "100 000 à 200 000"
 }
 
 nb_patients_data.each do |slug, nb|

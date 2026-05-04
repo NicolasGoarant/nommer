@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get "/a-propos", to: "pages#about", as: :about
   root "pathologies#index"
+
+  get "/a-propos",         to: "pages#about",            as: :about
+  get "/contact",          to: "pages#contact",           as: :contact
+  get "/mentions-legales", to: "pages#mentions_legales",  as: :mentions_legales
 
   devise_for :users, controllers: {
     registrations: "users/registrations",

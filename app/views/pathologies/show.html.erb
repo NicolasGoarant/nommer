@@ -29,13 +29,75 @@
     </div>
   </div>
 
+  <%# ── PHRASES DILATOIRES — style éditorial ── %>
+  <% dismissive = JSON.parse(@pathology.dismissive_phrases || "[]") rescue [] %>
+  <% if dismissive.any? %>
+    <div class="mb-14 -mx-6 px-6 py-12" style="background:var(--color-encre)">
+      <p class="text-xs tracking-widest uppercase font-medium mb-8 text-center" style="color:var(--color-accent)">
+        Ce qu'on vous a peut-être dit
+      </p>
+      <div class="space-y-6 max-w-xl mx-auto">
+        <% dismissive.each do |phrase| %>
+          <p class="font-serif text-center leading-relaxed" style="color:rgba(255,255,255,0.75);font-size:1.2rem;font-style:italic">
+            "<%=phrase %>"
+          </p>
+        <% end %>
+      </div>
+      <p class="text-center mt-8 text-sm" style="color:rgba(255,255,255,0.35)">
+        Si vous reconnaissez ces phrases, vous n'êtes pas seul·e.
+      </p>
+    </div>
+  <% end %>
+
+  <%# ── VIDÉO + TÉMOIGNAGES ── %>
+  <% testimonials = JSON.parse(@pathology.testimonials || "[]") rescue [] %>
+  <% if testimonials.any? || @pathology.youtube_id.present? %>
+    <div class="mb-12">
+      <h2 class="font-serif font-semibold mb-6" style="font-size:1.25rem;color:var(--color-encre)">
+        Ils en parlent
+      </h2>
+      <% if @pathology.youtube_id.present? %>
+        <div class="mb-6">
+          <div class="rounded-2xl overflow-hidden relative"
+               style="height:360px;background:var(--color-encre);cursor:pointer"
+               onclick="this.innerHTML='<iframe width=100% height=360 src=https://www.youtube.com/embed/<%= @pathology.youtube_id %>?autoplay=1 frameborder=0 allow=autoplay allowfullscreen></iframe>'">
+            <img src="https://img.youtube.com/vi/<%= @pathology.youtube_id %>/maxresdefault.jpg"
+                 class="absolute inset-0 w-full h-full object-cover" style="opacity:0.5">
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <div style="width:68px;height:68px;background:var(--color-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <p class="font-medium" style="color:white">Voir le témoignage</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <% if testimonials.any? %>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <% testimonials.each_with_index do |t, i| %>
+            <% avatars = ["👩", "👨", "🧑", "👩‍🦱", "👨‍🦳", "👩‍🦰", "🧔", "👱‍♀️"] %>
+            <div class="rounded-2xl p-6" style="background:white;border:1px solid var(--color-doux)">
+              <p class="italic leading-relaxed mb-5" style="color:var(--color-encre)">
+                «&nbsp;<%= t["quote"] %>&nbsp;»
+              </p>
+              <div class="flex items-center gap-3">
+                <span style="font-size:1.8rem;line-height:1"><%= avatars[i % avatars.length] %></span>
+                <span class="font-medium text-sm" style="color:var(--color-accent)">— <%= t["initials"] %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
   <%# ── DESCRIPTION + SYMPTÔMES ── %>
   <div class="grid grid-cols-1 md:grid-cols-5 gap-10 mb-14">
     <div class="md:col-span-3">
-      <p class="leading-relaxed mb-8" style="color:var(--color-ardoise);font-size:1.05rem">
+      <p class="leading-relaxed mb-8" style="color:var(--color-ardoise);font-size:1.1rem">
         <%= @pathology.description %>
       </p>
-      <h2 class="font-serif font-semibold mb-4" style="font-size:1.25rem;color:var(--color-encre)">
+      <h2 class="font-serif font-semibold mb-4" style="font-size:1.35rem;color:var(--color-encre)">
         Symptômes fréquents
       </h2>
       <%
@@ -92,7 +154,7 @@
     </div>
 
     <%# Infos secondaires — colonne droite %>
-    <div class="md:col-span-2 space-y-6" style="font-size:0.9rem">
+    <div class="md:col-span-2 space-y-6" style="font-size:1rem">
       <% if @pathology.bias_notes.present? %>
         <div style="border-left:3px solid var(--color-accent);padding-left:1rem">
           <p class="font-medium mb-1.5" style="color:var(--color-encre)">🔎 Pourquoi ça tarde</p>
@@ -131,71 +193,6 @@
       <% end %>
     </div>
   </div>
-
-  <%# ── PHRASES DILATOIRES — style éditorial ── %>
-  <% dismissive = JSON.parse(@pathology.dismissive_phrases || "[]") rescue [] %>
-  <% if dismissive.any? %>
-    <div class="mb-14 -mx-6 px-6 py-12" style="background:var(--color-encre)">
-      <p class="text-xs tracking-widest uppercase font-medium mb-8 text-center" style="color:var(--color-accent)">
-        Ce qu'on vous a peut-être dit
-      </p>
-      <div class="space-y-6 max-w-xl mx-auto">
-        <% dismissive.each do |phrase| %>
-          <p class="font-serif text-center leading-relaxed" style="color:rgba(255,255,255,0.75);font-size:1.2rem;font-style:italic">
-            "<%=phrase %>"
-          </p>
-        <% end %>
-      </div>
-      <p class="text-center mt-8 text-sm" style="color:rgba(255,255,255,0.35)">
-        Si vous reconnaissez ces phrases, vous n'êtes pas seul·e.
-      </p>
-    </div>
-  <% end %>
-
-  <%# ── VIDÉO ── %>
-  <% if @pathology.youtube_id.present? %>
-    <div class="mb-12">
-      <h2 class="font-serif font-semibold mb-5" style="font-size:1.25rem;color:var(--color-encre)">
-        Témoignage vidéo
-      </h2>
-      <div class="rounded-2xl overflow-hidden relative"
-           style="height:360px;background:var(--color-encre);cursor:pointer"
-           onclick="this.innerHTML='<iframe width=100% height=360 src=https://www.youtube.com/embed/<%= @pathology.youtube_id %>?autoplay=1 frameborder=0 allow=autoplay allowfullscreen></iframe>'">
-        <img src="https://img.youtube.com/vi/<%= @pathology.youtube_id %>/maxresdefault.jpg"
-             class="absolute inset-0 w-full h-full object-cover" style="opacity:0.5">
-        <div class="absolute inset-0 flex flex-col items-center justify-center">
-          <div style="width:68px;height:68px;background:var(--color-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <p class="font-medium" style="color:white">Voir le témoignage</p>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-  <%# ── TÉMOIGNAGES ── %>
-  <% testimonials = JSON.parse(@pathology.testimonials || "[]") rescue [] %>
-  <% if testimonials.any? %>
-    <div class="mb-12">
-      <h2 class="font-serif font-semibold mb-6" style="font-size:1.25rem;color:var(--color-encre)">
-        Ils en parlent
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <% testimonials.each_with_index do |t, i| %>
-          <% avatars = ["👩", "👨", "🧑", "👩‍🦱", "👨‍🦳", "👩‍🦰", "🧔", "👱‍♀️"] %>
-          <div class="rounded-2xl p-6" style="background:white;border:1px solid var(--color-doux)">
-            <p class="italic leading-relaxed mb-5" style="color:var(--color-encre)">
-              «&nbsp;<%= t["quote"] %>&nbsp;»
-            </p>
-            <div class="flex items-center gap-3">
-              <span style="font-size:1.8rem;line-height:1"><%= avatars[i % avatars.length] %></span>
-              <span class="font-medium text-sm" style="color:var(--color-accent)">— <%= t["initials"] %></span>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
 
   <%# ── CTA ── %>
   <div class="rounded-3xl p-10 text-center" style="background:var(--color-encre)">
