@@ -6,16 +6,30 @@
          style="filter:brightness(0.78) saturate(0.9);object-position:center 20%">
   </div>
   <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="line-height:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#F7F4EF"/></svg></div>
-  <div class="hero-content relative z-10 text-center px-6 w-full max-w-3xl mx-auto">
-    <h1 class="font-serif font-semibold leading-tight mb-8 text-white"
-        style="font-size:clamp(2.4rem,6vw,4.5rem)">
+  <div class="hero-content relative z-10 text-center px-6 w-full max-w-2xl mx-auto">
+    <div class="rounded-3xl md:px-10 md:py-10" style="background:transparent" id="hero-card">
+    <style>
+      @media (min-width: 768px) {
+        #hero-card {
+          background: rgba(28,43,58,0.52) !important;
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255,255,255,0.12);
+        }
+      }
+    </style>
+    <h1 class="font-serif font-semibold leading-tight mb-6 text-white"
+        style="font-size:clamp(2.2rem,5vw,4rem);text-shadow:0 2px 16px rgba(0,0,0,0.7)">
       Et si c'était ça&nbsp;?
     </h1>
-    <p class="leading-relaxed mb-10 max-w-lg mx-auto"
-       style="color:rgba(255,255,255,0.82);font-size:1.15rem">
+    <p class="leading-relaxed mb-8 mx-auto"
+       style="color:rgba(255,255,255,0.95);font-size:1.05rem;text-shadow:0 1px 10px rgba(0,0,0,0.8)">
       En France, 8 à 12 millions de personnes souffrent d'une pathologie
-      qui tarde des années à être diagnostiquée.
-      <br>c'est ce qu'on appelle <em style="color:white;font-style:normal;font-weight:700">l'errance médicale</em>.
+      qui tarde des années à être diagnostiquée —
+      c'est ce qu'on appelle <em style="color:white;font-style:normal;font-weight:700">l'errance médicale</em>.
+      <br><br>
+      Nommer vous aide à mettre des mots sur ce que vous ressentez,
+      et à arriver préparé chez votre médecin.
     </p>
     <div class="flex items-center justify-center gap-4 flex-wrap">
       <%= link_to "Tester mes symptômes →", new_diagnostic_path,
@@ -23,7 +37,8 @@
           style: "background:var(--color-accent);box-shadow:0 4px 24px rgba(192,120,90,0.45);font-size:1rem" %>
       <%= link_to "Voir les pathologies ↓", "#pathologies",
           class: "px-8 py-4 rounded-full font-medium transition-colors",
-          style: "border:2px solid white;color:white;background:rgba(255,255,255,0.18);font-size:1rem;backdrop-filter:blur(6px)" %>
+          style: "border:2px solid white;color:white;background:rgba(255,255,255,0.15);font-size:1rem" %>
+    </div>
     </div>
   </div>
 </div>
@@ -117,8 +132,8 @@
           %>
 
           <%# Card %>
-          <div class="pathology-card flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full"
-               style="background:white;border:1px solid var(--color-doux)">
+          <%= link_to pathology_path(p.slug), class: "pathology-card flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full",
+               style: "background:white;border:1px solid var(--color-doux);text-decoration:none;color:inherit" do %>
 
             <%# ── IMAGE + OVERLAY ── %>
             <div class="relative overflow-hidden" style="height:12rem;background:var(--color-doux)">
@@ -199,14 +214,13 @@
               </div>
 
               <%# CTA %>
-              <%= link_to pathology_path(p.slug),
-                  class: "mt-auto block text-center py-2.5 rounded-xl font-medium transition-opacity hover:opacity-80",
-                  style: "background:var(--color-creme);color:var(--color-encre);font-size:0.88rem;border:1px solid var(--color-doux)" do %>
+              <div class="mt-auto block text-center py-2.5 rounded-xl font-medium"
+                   style="background:var(--color-creme);color:var(--color-encre);font-size:0.88rem;border:1px solid var(--color-doux)">
                 En savoir plus →
-              <% end %>
+              </div>
 
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>

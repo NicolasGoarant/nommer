@@ -1,7 +1,7 @@
 <%# ─── HERO ──────────────────────────────────────────────────────────────── %>
 <div class="relative flex items-center justify-center overflow-hidden hero-section">
   <div class="absolute inset-0">
-    <img src="<%= asset_path('main_epaule.jpg') %>"
+    <img src="/assets/main_epaule.jpg"
          alt="" class="w-full h-full object-cover"
          style="filter:brightness(0.78) saturate(0.9);object-position:center 20%">
   </div>
@@ -132,8 +132,8 @@
           %>
 
           <%# Card %>
-          <div class="pathology-card flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full"
-               style="background:white;border:1px solid var(--color-doux)">
+          <%= link_to pathology_path(p.slug), class: "pathology-card flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full",
+               style: "background:white;border:1px solid var(--color-doux);text-decoration:none;color:inherit" do %>
 
             <%# ── IMAGE + OVERLAY ── %>
             <div class="relative overflow-hidden" style="height:12rem;background:var(--color-doux)">
@@ -214,14 +214,13 @@
               </div>
 
               <%# CTA %>
-              <%= link_to pathology_path(p.slug),
-                  class: "mt-auto block text-center py-2.5 rounded-xl font-medium transition-opacity hover:opacity-80",
-                  style: "background:var(--color-creme);color:var(--color-encre);font-size:0.88rem;border:1px solid var(--color-doux)" do %>
+              <div class="mt-auto block text-center py-2.5 rounded-xl font-medium"
+                   style="background:var(--color-creme);color:var(--color-encre);font-size:0.88rem;border:1px solid var(--color-doux)">
                 En savoir plus →
-              <% end %>
+              </div>
 
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
