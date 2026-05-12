@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind",    "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="preload" as="image" href="<%= asset_path('main_epaule.jpg') %>">
     <style>
       #mobile-menu { display: none; }
       #mobile-menu.open { display: block; }
