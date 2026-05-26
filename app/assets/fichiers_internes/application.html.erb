@@ -9,7 +9,6 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind",    "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <link rel="preload" as="image" href="<%= asset_path('main_epaule.jpg') %>">
     <style>
       #mobile-menu { display: none; }
       #mobile-menu.open { display: block; }
@@ -30,13 +29,12 @@
           <span class="font-serif font-semibold" style="font-size:1.2rem;color:var(--color-encre)">Nommer</span>
         <% end %>
         <div class="flex items-center gap-5" style="font-size:0.92rem">
-          <%= link_to "À propos", about_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
           <%= link_to "Pathologies", "#{root_path}#pathologies", data: { turbo: false }, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
           <% if user_signed_in? %>
             <%= link_to "Mon journal", journal_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
             <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
           <% else %>
-            <%= link_to "Connexion", new_user_session_path, class: "transition-opacity hover:opacity-80 px-4 py-1.5 rounded-full font-medium", style: "color:var(--color-encre);border:1.5px solid var(--color-doux);font-size:0.9rem" %>
+            <%= link_to "Connexion", new_user_session_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
           <% end %>
           <%= link_to "Tester mes symptômes", new_diagnostic_path,
               class: "px-4 py-2 rounded-full font-medium transition-opacity hover:opacity-80 whitespace-nowrap",
@@ -65,7 +63,6 @@
       <%# Menu mobile %>
       <div id="mobile-menu" style="background:rgba(247,244,239,0.98);border-top:1px solid var(--color-doux)">
         <div class="px-6 py-6 flex flex-col gap-5" style="font-size:1.05rem">
-          <%= link_to "À propos", about_path, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
           <%= link_to "Pathologies", "#{root_path}#pathologies", data: { turbo: false }, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
           <% if user_signed_in? %>
             <%= link_to "Mon journal", journal_path, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
@@ -107,10 +104,7 @@
         </div>
         <div class="hidden md:flex gap-6">
           <%= link_to "Pathologies", "#{root_path}#pathologies", data: { turbo: false }, class: "hover:underline" %>
-          <%= link_to "À propos", about_path, class: "hover:underline" %>
           <%= link_to "Tester", new_diagnostic_path, class: "hover:underline" %>
-          <%= link_to "Contact", contact_path, class: "hover:underline" %>
-          <%= link_to "Mentions légales", mentions_legales_path, class: "hover:underline" %>
         </div>
       </div>
     </footer>

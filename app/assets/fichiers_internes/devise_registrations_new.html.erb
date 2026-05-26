@@ -1,0 +1,127 @@
+<%# ─────────────────────────────────────────────────────────────────────
+    app/views/devise/registrations/new.html.erb
+    Page d'inscription — charte Nommer (crème / encre / ardoise / accent)
+    Inclut le champ first_name (permis dans ApplicationController).
+───────────────────────────────────────────────────────────────────── %>
+
+<div class="flex items-center justify-center px-5 py-12 md:py-20" style="min-height:calc(100vh - 4.5rem - 5rem)">
+  <div class="w-full" style="max-width:28rem">
+
+    <%# ── En-tête ── %>
+    <div class="text-center mb-8">
+      <h1 class="font-serif font-semibold mb-3"
+          style="font-size:clamp(1.75rem, 4vw, 2.25rem); color:var(--color-encre); line-height:1.2">
+        Créer un compte
+      </h1>
+      <p class="leading-relaxed" style="color:var(--color-ardoise); font-size:0.98rem">
+        Pour commencer à mettre des mots sur ce que vous ressentez.
+      </p>
+    </div>
+
+    <%# ── Carte du formulaire ── %>
+    <div class="rounded-2xl px-6 py-8 md:px-8 md:py-10"
+         style="background:white; border:1px solid var(--color-doux); box-shadow:0 8px 32px rgba(28,43,58,0.06)">
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-col gap-5" }) do |f| %>
+
+        <%# ── Erreurs Devise ── %>
+        <% if resource.errors.any? %>
+          <div class="rounded-xl px-4 py-3" style="background:#FEE2E2; color:#991B1B; font-size:0.9rem">
+            <ul class="list-disc list-inside space-y-1">
+              <% resource.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%# ── Prénom ── %>
+        <div class="flex flex-col gap-2">
+          <%= f.label :first_name, "Prénom",
+              class: "font-medium",
+              style: "color:var(--color-encre); font-size:0.9rem" %>
+          <%= f.text_field :first_name,
+              autofocus: true,
+              autocomplete: "given-name",
+              placeholder: "Votre prénom",
+              class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none",
+              style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.98rem" %>
+        </div>
+
+        <%# ── Email ── %>
+        <div class="flex flex-col gap-2">
+          <%= f.label :email, "Adresse e-mail",
+              class: "font-medium",
+              style: "color:var(--color-encre); font-size:0.9rem" %>
+          <%= f.email_field :email,
+              autocomplete: "email",
+              placeholder: "vous@exemple.fr",
+              class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none",
+              style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.98rem" %>
+        </div>
+
+        <%# ── Mot de passe ── %>
+        <div class="flex flex-col gap-2">
+          <%= f.label :password, "Mot de passe",
+              class: "font-medium",
+              style: "color:var(--color-encre); font-size:0.9rem" %>
+          <%= f.password_field :password,
+              autocomplete: "new-password",
+              placeholder: "••••••••",
+              class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none",
+              style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.98rem" %>
+          <% if @minimum_password_length %>
+            <span style="color:var(--color-ardoise); font-size:0.82rem">
+              <%= @minimum_password_length %> caractères minimum
+            </span>
+          <% end %>
+        </div>
+
+        <%# ── Confirmation mot de passe ── %>
+        <div class="flex flex-col gap-2">
+          <%= f.label :password_confirmation, "Confirmer le mot de passe",
+              class: "font-medium",
+              style: "color:var(--color-encre); font-size:0.9rem" %>
+          <%= f.password_field :password_confirmation,
+              autocomplete: "new-password",
+              placeholder: "••••••••",
+              class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none",
+              style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.98rem" %>
+        </div>
+
+        <%# ── Bouton submit ── %>
+        <%= f.submit "Créer mon compte",
+            class: "w-full px-6 py-3.5 rounded-full font-medium text-white transition-opacity hover:opacity-90 cursor-pointer mt-2",
+            style: "background:var(--color-accent); font-size:1rem; box-shadow:0 4px 16px rgba(192,120,90,0.25); border:none" %>
+
+      <% end %>
+    </div>
+
+    <%# ── Lien retour connexion ── %>
+    <div class="text-center mt-6" style="font-size:0.95rem; color:var(--color-ardoise)">
+      Déjà un compte&nbsp;?
+      <%= link_to "Se connecter", new_session_path(resource_name),
+          class: "font-medium transition-opacity hover:opacity-70 ml-1",
+          style: "color:var(--color-accent)" %>
+    </div>
+
+    <%# ── Note rassurante ── %>
+    <p class="text-center mt-8 leading-relaxed px-4"
+       style="color:var(--color-ardoise); font-size:0.82rem">
+      Nommer est un outil de documentation personnelle.<br>
+      Vos données restent privées.
+    </p>
+
+  </div>
+</div>
+
+<%# ── Focus visible cohérent avec la charte ── %>
+<style>
+  input:focus, textarea:focus {
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 0 0 3px rgba(192,120,90,0.15) !important;
+  }
+  input::placeholder {
+    color: #B0B0A8;
+  }
+</style>
