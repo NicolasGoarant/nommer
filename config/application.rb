@@ -23,5 +23,9 @@ module Nommer
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # Locale française par défaut
+    config.i18n.default_locale = :fr
+    config.i18n.available_locales = [:fr, :en]
+    config.i18n.fallbacks = [:en]
   end
 end

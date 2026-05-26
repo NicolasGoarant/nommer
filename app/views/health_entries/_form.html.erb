@@ -1,0 +1,275 @@
+<%# ─────────────────────────────────────────────────────────────────────
+    app/views/health_entries/_form.html.erb
+    Formulaire d'entrée — tous champs visibles, charte Nommer
+───────────────────────────────────────────────────────────────────── %>
+
+<%
+  type_config = {
+    "symptom"      => { icon: "🔴", color: "#C0785A", label: "Symptôme" },
+    "consultation" => { icon: "🩺", color: "#1C2B3A", label: "Consultation" },
+    "exam"         => { icon: "🧪", color: "#5C6B7A", label: "Examen" },
+    "treatment"    => { icon: "💊", color: "#84B59F", label: "Traitement" }
+  }
+
+  zones_list = HealthEntry::BODY_ZONES.map { |z| [z.tr("_", " ").capitalize, z] }
+%>
+
+<%= form_with(model: entry, local: true, html: { class: "flex flex-col gap-6" }) do |f| %>
+
+  <%# ── Erreurs ── %>
+  <% if entry.errors.any? %>
+    <div class="rounded-xl px-4 py-3" style="background:#FEE2E2; color:#991B1B; font-size:0.9rem">
+      <strong>Cette entrée n'a pas pu être enregistrée :</strong>
+      <ul class="list-disc list-inside mt-2 space-y-1">
+        <% entry.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# ────────────────────────────────────────────────────────────
+      SECTION 1 — INFORMATIONS PRINCIPALES
+  ─────────────────────────────────────────────────────────────── %>
+  <div class="rounded-2xl px-6 py-6 md:px-8 md:py-8"
+       style="background:white; border:1px solid var(--color-doux); box-shadow:0 4px 16px rgba(28,43,58,0.04)">
+
+    <h2 class="font-serif font-semibold mb-1"
+        style="color:var(--color-encre); font-size:1.15rem">
+      L'essentiel
+    </h2>
+    <p class="mb-5" style="color:var(--color-ardoise); font-size:0.88rem">
+      Le type, la date et un titre court.
+    </p>
+
+    <%# ── Type d'entrée (radio buttons visuels) ── %>
+    <div class="mb-5">
+      <label class="block font-medium mb-3"
+             style="color:var(--color-encre); font-size:0.9rem">
+        Type d'entrée
+      </label>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <% HealthEntry::ENTRY_TYPES.each do |type| %>
+          <% cfg = type_config[type] %>
+          <label class="flex items-center gap-2 px-3 py-3 rounded-xl cursor-pointer transition-all"
+                 style="background:<%= entry.entry_type == type ? 'var(--color-creme)' : 'white' %>;
+                        border:2px solid <%= entry.entry_type == type ? cfg[:color] : 'var(--color-doux)' %>">
+            <%= f.radio_button :entry_type, type,
+                class: "shrink-0",
+                style: "accent-color:#{cfg[:color]}" %>
+            <span class="flex items-center gap-1.5">
+              <span style="font-size:0.95rem"><%= cfg[:icon] %></span>
+              <span class="font-medium" style="color:var(--color-encre); font-size:0.88rem">
+                <%= cfg[:label] %>
+              </span>
+            </span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <%# ── Date + Titre côte à côte ── %>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-1">
+
+      <div class="flex flex-col gap-2">
+        <%= f.label :occurred_on, "Date",
+            class: "font-medium",
+            style: "color:var(--color-encre); font-size:0.9rem" %>
+        <%= f.date_field :occurred_on,
+            class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none",
+            style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.95rem" %>
+      </div>
+
+      <div class="flex flex-col gap-2 md:col-span-2">
+        <%= f.label :title, "Titre court",
+            class: "font-medium",
+            style: "color:var(--color-encre); font-size:0.9rem" %>
+        <%= f.text_field :title,
+            placeholder: "Ex : douleurs articulaires, rendez-vous gynéco, prise de sang…",
+            class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none",
+            style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.95rem" %>
+      </div>
+
+    </div>
+  </div>
+
+  <%# ────────────────────────────────────────────────────────────
+      SECTION 2 — DESCRIPTION
+  ─────────────────────────────────────────────────────────────── %>
+  <div class="rounded-2xl px-6 py-6 md:px-8 md:py-8"
+       style="background:white; border:1px solid var(--color-doux); box-shadow:0 4px 16px rgba(28,43,58,0.04)">
+
+    <h2 class="font-serif font-semibold mb-1"
+        style="color:var(--color-encre); font-size:1.15rem">
+      Le détail
+    </h2>
+    <p class="mb-5" style="color:var(--color-ardoise); font-size:0.88rem">
+      Décrivez ce que vous avez vécu, sans vous censurer. Vos propres mots suffisent.
+    </p>
+
+    <div class="flex flex-col gap-2">
+      <%= f.label :description, "Description libre",
+          class: "font-medium",
+          style: "color:var(--color-encre); font-size:0.9rem" %>
+      <%= f.text_area :description,
+          rows: 5,
+          placeholder: "Ce que vous avez ressenti, dit, entendu, observé…",
+          class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none resize-y",
+          style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.95rem; min-height:8rem; font-family:inherit" %>
+    </div>
+  </div>
+
+  <%# ────────────────────────────────────────────────────────────
+      SECTION 3 — PRÉCISIONS OPTIONNELLES
+  ─────────────────────────────────────────────────────────────── %>
+  <div class="rounded-2xl px-6 py-6 md:px-8 md:py-8"
+       style="background:white; border:1px solid var(--color-doux); box-shadow:0 4px 16px rgba(28,43,58,0.04)">
+
+    <h2 class="font-serif font-semibold mb-1"
+        style="color:var(--color-encre); font-size:1.15rem">
+      Précisions
+    </h2>
+    <p class="mb-5" style="color:var(--color-ardoise); font-size:0.88rem">
+      Tout est facultatif. Remplissez ce qui vous semble pertinent selon le type d'entrée.
+    </p>
+
+    <%# ── Intensité (utile pour un symptôme) ── %>
+    <div class="mb-5">
+      <label class="block font-medium mb-1"
+             style="color:var(--color-encre); font-size:0.9rem">
+        Intensité ressentie
+      </label>
+      <p class="mb-3" style="color:var(--color-ardoise); font-size:0.82rem">
+        Surtout pertinent pour un symptôme. Laissez vide si non applicable.
+      </p>
+      <div class="flex items-center gap-2 flex-wrap">
+        <% (1..5).each do |level| %>
+          <% labels = ["Très léger", "Léger", "Modéré", "Intense", "Très intense"] %>
+          <label class="flex items-center gap-2 px-3 py-2 rounded-xl cursor-pointer transition-all"
+                 style="background:<%= entry.intensity == level ? 'var(--color-creme)' : 'white' %>;
+                        border:1.5px solid <%= entry.intensity == level ? 'var(--color-accent)' : 'var(--color-doux)' %>">
+            <%= f.radio_button :intensity, level,
+                class: "shrink-0",
+                style: "accent-color:var(--color-accent)" %>
+            <span class="flex items-center gap-1">
+              <span class="font-semibold" style="color:var(--color-encre); font-size:0.88rem">
+                <%= level %>
+              </span>
+              <span style="color:var(--color-ardoise); font-size:0.82rem">
+                <%= labels[level - 1] %>
+              </span>
+            </span>
+          </label>
+        <% end %>
+        <%# Option "non renseigné" %>
+        <label class="flex items-center gap-2 px-3 py-2 rounded-xl cursor-pointer transition-all"
+               style="background:<%= entry.intensity.nil? ? 'var(--color-creme)' : 'white' %>;
+                      border:1.5px solid <%= entry.intensity.nil? ? 'var(--color-ardoise)' : 'var(--color-doux)' %>">
+          <%= f.radio_button :intensity, "",
+              class: "shrink-0",
+              style: "accent-color:var(--color-ardoise)" %>
+          <span style="color:var(--color-ardoise); font-size:0.85rem; font-style:italic">
+            Non renseigné
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <%# ── Zone du corps ── %>
+    <div class="mb-5">
+      <%= f.label :body_zone, "Zone du corps concernée",
+          class: "block font-medium mb-1",
+          style: "color:var(--color-encre); font-size:0.9rem" %>
+      <p class="mb-3" style="color:var(--color-ardoise); font-size:0.82rem">
+        Si une zone est concernée. Laissez vide sinon.
+      </p>
+      <%= f.select :body_zone,
+          options_for_select([["— Aucune zone particulière —", ""]] + zones_list, entry.body_zone),
+          {},
+          class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none cursor-pointer",
+          style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.95rem" %>
+    </div>
+
+    <%# ── Spécialité médicale (utile pour consultation) ── %>
+    <div class="mb-5">
+      <%= f.label :doctor_specialty, "Spécialité du médecin",
+          class: "block font-medium mb-1",
+          style: "color:var(--color-encre); font-size:0.9rem" %>
+      <p class="mb-3" style="color:var(--color-ardoise); font-size:0.82rem">
+        Pour une consultation : médecin généraliste, rhumatologue, neurologue…
+      </p>
+      <%= f.text_field :doctor_specialty,
+          placeholder: "Ex : médecin généraliste, rhumatologue…",
+          class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none",
+          style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.95rem" %>
+    </div>
+
+    <%# ── Nom de l'examen ── %>
+    <div class="mb-5">
+      <%= f.label :exam_name, "Nom de l'examen",
+          class: "block font-medium mb-1",
+          style: "color:var(--color-encre); font-size:0.9rem" %>
+      <p class="mb-3" style="color:var(--color-ardoise); font-size:0.82rem">
+        Pour un examen : IRM lombaire, prise de sang, échographie…
+      </p>
+      <%= f.text_field :exam_name,
+          placeholder: "Ex : prise de sang, IRM, échographie…",
+          class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none",
+          style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.95rem" %>
+    </div>
+
+    <%# ── Résultat disponible (checkbox) ── %>
+    <div class="mb-5">
+      <label class="flex items-center gap-2.5 cursor-pointer">
+        <%= f.check_box :exam_result_available,
+            class: "w-4 h-4 rounded cursor-pointer",
+            style: "accent-color:var(--color-accent)" %>
+        <span style="color:var(--color-encre); font-size:0.92rem">
+          Résultat d'examen disponible
+        </span>
+      </label>
+    </div>
+
+    <%# ── Notes sur le résultat ── %>
+    <div>
+      <%= f.label :exam_result_notes, "Notes sur le résultat",
+          class: "block font-medium mb-1",
+          style: "color:var(--color-encre); font-size:0.9rem" %>
+      <p class="mb-3" style="color:var(--color-ardoise); font-size:0.82rem">
+        Ce qui a été dit, écrit ou conclu suite à l'examen ou la consultation.
+      </p>
+      <%= f.text_area :exam_result_notes,
+          rows: 3,
+          placeholder: "Ce que le médecin a dit, ce que le compte-rendu indique…",
+          class: "w-full px-4 py-3 rounded-xl transition-all focus:outline-none resize-y",
+          style: "background:var(--color-creme); border:1px solid var(--color-doux); color:var(--color-encre); font-size:0.95rem; min-height:5rem; font-family:inherit" %>
+    </div>
+
+  </div>
+
+  <%# ────────────────────────────────────────────────────────────
+      ACTIONS
+  ─────────────────────────────────────────────────────────────── %>
+  <div class="flex items-center justify-between flex-wrap gap-3">
+
+    <%= link_to "← Annuler", journal_path,
+        class: "transition-opacity hover:opacity-60",
+        style: "color:var(--color-ardoise); font-size:0.92rem" %>
+
+    <%= f.submit (entry.persisted? ? "Mettre à jour" : "Enregistrer l'entrée"),
+        class: "px-6 py-3 rounded-full font-medium text-white transition-opacity hover:opacity-90 cursor-pointer",
+        style: "background:var(--color-accent); font-size:0.95rem; box-shadow:0 4px 16px rgba(192,120,90,0.25); border:none" %>
+
+  </div>
+
+<% end %>
+
+<style>
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 0 0 3px rgba(192,120,90,0.15) !important;
+  }
+  input::placeholder, textarea::placeholder {
+    color: #B0B0A8;
+  }
+</style>

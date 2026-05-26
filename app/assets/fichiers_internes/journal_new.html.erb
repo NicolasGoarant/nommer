@@ -1,0 +1,24 @@
+<%# ─────────────────────────────────────────────────────────────────────
+    app/views/health_entries/new.html.erb
+    Nouvelle entrée — wrapper qui appelle le partial _form
+───────────────────────────────────────────────────────────────────── %>
+
+<div class="max-w-3xl mx-auto px-5 md:px-8 pt-10 md:pt-14 pb-20">
+
+  <%# Fil d'Ariane %>
+  <%= link_to "← Mon journal", journal_path,
+      class: "inline-block mb-6 transition-opacity hover:opacity-60",
+      style: "color:var(--color-ardoise); font-size:0.9rem" %>
+
+  <%# Titre %>
+  <h1 class="font-serif font-semibold mb-2"
+      style="font-size:clamp(1.75rem, 4vw, 2.25rem); color:var(--color-encre); line-height:1.2">
+    Nouvelle entrée
+  </h1>
+  <p class="mb-10" style="color:var(--color-ardoise); font-size:0.98rem">
+    Notez ce que vous souhaitez. Tous les champs sont modifiables après coup.
+  </p>
+
+  <%= render "form", entry: @entry %>
+
+</div>
