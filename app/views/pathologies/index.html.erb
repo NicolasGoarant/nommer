@@ -76,6 +76,63 @@
   </div>
 </div>
 
+<%# ─── CONFIANCE ──────────────────────────────────────────────────────────── %>
+<%# Bloc de rassurance contextuelle : visible avant que l'utilisateur ne plonge
+    dans la liste des fiches. Deux cartes (validation médicale + données privées)
+    qui renvoient vers les pages dédiées du footer. %>
+<div class="max-w-5xl mx-auto px-6 pb-12">
+  <div class="text-center mb-8">
+    <h2 class="font-serif font-semibold mb-2" style="font-size:1.55rem;color:var(--color-encre)">
+      Un projet construit dans la rigueur
+    </h2>
+    <p style="color:var(--color-ardoise);font-size:0.95rem">
+      Deux engagements au cœur de Nommer.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+
+    <%# Carte 1 — Validation médicale %>
+    <div class="rounded-2xl p-6 md:p-8 flex flex-col shadow-sm"
+         style="background:white;border:1px solid var(--color-doux)">
+      <div class="flex items-center justify-center mb-5 rounded-2xl"
+           style="background:var(--color-creme);width:3.25rem;height:3.25rem;font-size:1.5rem">
+        🩺
+      </div>
+      <h3 class="font-serif font-semibold mb-3" style="font-size:1.15rem;color:var(--color-encre)">
+        Validation médicale
+      </h3>
+      <p class="leading-relaxed mb-5 flex-1" style="color:var(--color-ardoise);font-size:0.95rem">
+        Chaque fiche repose sur des sources médicales solides : HAS, Orphanet,
+        sociétés savantes. Notre Conseil scientifique veille à la rigueur du contenu.
+      </p>
+      <%= link_to "Découvrir notre démarche →", conseil_scientifique_path,
+          class: "inline-block font-medium transition-opacity hover:opacity-70",
+          style: "color:var(--color-accent);font-size:0.9rem" %>
+    </div>
+
+    <%# Carte 2 — Vos données vous appartiennent %>
+    <div class="rounded-2xl p-6 md:p-8 flex flex-col shadow-sm"
+         style="background:white;border:1px solid var(--color-doux)">
+      <div class="flex items-center justify-center mb-5 rounded-2xl"
+           style="background:var(--color-creme);width:3.25rem;height:3.25rem;font-size:1.5rem">
+        🔒
+      </div>
+      <h3 class="font-serif font-semibold mb-3" style="font-size:1.15rem;color:var(--color-encre)">
+        Vos données vous appartiennent
+      </h3>
+      <p class="leading-relaxed mb-5 flex-1" style="color:var(--color-ardoise);font-size:0.95rem">
+        Hébergement français à venir, conformité RGPD, aucune revente. Vos
+        descriptions et votre journal restent strictement personnels.
+      </p>
+      <%= link_to "En savoir plus sur la sécurité →", securite_donnees_path,
+          class: "inline-block font-medium transition-opacity hover:opacity-70",
+          style: "color:var(--color-accent);font-size:0.9rem" %>
+    </div>
+
+  </div>
+</div>
+
 <div id="pathologies" class="pt-4 pb-16">
 
   <% Pathology::CATEGORIES.each do |key, label| %>
