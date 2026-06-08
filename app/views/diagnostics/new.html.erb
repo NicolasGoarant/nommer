@@ -4,9 +4,12 @@
     <h1 class="text-4xl font-serif font-semibold mb-5" style="color:var(--color-encre)">
       Décrivez ce que<br>vous traversez
     </h1>
-    <p class="text-base leading-relaxed" style="color:var(--color-ardoise)">
+    <p class="text-base leading-relaxed mb-4" style="color:var(--color-ardoise)">
       En quelques phrases libres — pas besoin de termes médicaux.<br>
       Notre outil identifie des pathologies à errance fréquente qui pourraient correspondre.
+    </p>
+    <p class="italic leading-relaxed" style="color:var(--color-ardoise);font-size:0.95rem">
+      Décrivez ce que vous ressentez pour mieux préparer votre prochain rendez-vous médical.
     </p>
   </div>
 
@@ -23,9 +26,13 @@
             style: "background:var(--color-creme);border:1px solid var(--color-doux);color:var(--color-encre);focus-ring-color:var(--color-ardoise)" %>
       </div>
 
-      <div class="rounded-xl p-4 mb-6 text-xs leading-relaxed" style="background:#F0F9F4;color:#2D6A4F">
-        <strong>Important :</strong> Cet outil ne pose pas de diagnostic médical. Il identifie des pistes
-        documentées à explorer avec votre médecin. Vos données ne sont pas conservées.
+      <div class="rounded-xl p-4 mb-6 text-xs leading-relaxed flex items-start gap-2"
+           style="background:var(--color-creme);border:1px solid var(--color-doux);color:var(--color-encre)">
+        <span class="shrink-0" style="font-size:1rem;line-height:1.3">📞</span>
+        <p style="line-height:1.6">
+          En cas de symptôme grave ou d'urgence vitale, contactez le
+          <strong>15 (Samu)</strong>.
+        </p>
       </div>
 
       <%= f.submit "Analyser mes symptômes →",

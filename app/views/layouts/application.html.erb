@@ -105,12 +105,14 @@
           </svg>
           <span>Nommer — outil de documentation personnelle, pas un diagnostic médical.</span>
         </div>
-        <div class="hidden md:flex gap-6">
+        <div class="hidden md:flex flex-wrap gap-x-6 gap-y-2 justify-end">
           <%= link_to "Pathologies", "#{root_path}#pathologies", data: { turbo: false }, class: "hover:underline" %>
           <%= link_to "À propos", about_path, class: "hover:underline" %>
           <%= link_to "Tester", new_diagnostic_path, class: "hover:underline" %>
-          <%= link_to "Contact", contact_path, class: "hover:underline" %>
+          <%= link_to "Conseil scientifique", conseil_scientifique_path, class: "hover:underline" %>
+          <%= link_to "Sécurité & données", securite_donnees_path, class: "hover:underline" %>
           <%= link_to "Mentions légales", mentions_legales_path, class: "hover:underline" %>
+          <%= link_to "Contact", contact_path, class: "hover:underline" %>
         </div>
       </div>
     </footer>

@@ -9,4 +9,10 @@ class PagesController < ApplicationController
 
   def mentions_legales
   end
+
+  def conseil_scientifique
+  end
+
+  def securite_donnees
+  end
 end

@@ -1,0 +1,99 @@
+<%# ── SÉCURITÉ & DONNÉES ────────────────────────────────────────────── %>
+<%# Page de transparence technique : ce qui reste privé, hébergement,
+    usage de l'IA, droits RGPD, posture de transparence assumée. %>
+
+<div class="max-w-2xl mx-auto px-6 pt-20 pb-14">
+
+  <%# ── HERO ── %>
+  <p class="text-xs tracking-widest uppercase font-medium mb-4" style="color:var(--color-accent)">Transparence technique</p>
+  <h1 class="font-serif font-semibold mb-4" style="font-size:clamp(1.8rem,4vw,2.5rem);color:var(--color-encre)">
+    Sécurité &amp; données
+  </h1>
+  <p class="leading-relaxed mb-12" style="color:var(--color-ardoise);font-size:1.1rem">
+    Vos données vous appartiennent.
+  </p>
+
+  <%# ── CE QUI RESTE PRIVÉ ── %>
+  <div class="mb-12">
+    <h2 class="font-serif font-semibold mb-4" style="font-size:1.2rem;color:var(--color-encre)">Ce qui reste privé</h2>
+    <p class="leading-relaxed mb-5" style="color:var(--color-ardoise);line-height:1.8">
+      Vos données personnelles, vos descriptions de symptômes, vos entrées de journal vous appartiennent.
+      Nous appliquons trois principes simples :
+    </p>
+    <div class="rounded-2xl px-8 py-7 space-y-4" style="background:white;border:1px solid var(--color-doux);color:var(--color-ardoise);margin:0 1px;line-height:1.7">
+      <p><strong style="color:var(--color-encre)">Aucune vente, aucun partage</strong> de vos données à des tiers commerciaux.</p>
+      <p><strong style="color:var(--color-encre)">Aucune utilisation</strong> pour entraîner un modèle d'intelligence artificielle.</p>
+      <p><strong style="color:var(--color-encre)">Conservation strictement limitée</strong> à ce qui est nécessaire pour faire fonctionner le service.</p>
+    </div>
+  </div>
+
+  <%# ── HÉBERGEMENT ── %>
+  <div class="mb-12">
+    <h2 class="font-serif font-semibold mb-4" style="font-size:1.2rem;color:var(--color-encre)">Hébergement</h2>
+    <p class="leading-relaxed" style="color:var(--color-ardoise);line-height:1.8">
+      Nommer est actuellement hébergé sur Heroku, en phase de validation du projet.
+      Nous prévoyons une migration vers un hébergeur certifié <strong style="color:var(--color-encre)">HDS
+      (Hébergeur de Données de Santé)</strong> en France avant tout déploiement à grande échelle.
+      Cette certification, requise par la loi française pour les services traitant des données
+      de santé, garantit un niveau de sécurité élevé et une localisation des données en Europe.
+    </p>
+  </div>
+
+  <%# ── INTELLIGENCE ARTIFICIELLE ── %>
+  <div class="mb-12">
+    <h2 class="font-serif font-semibold mb-4" style="font-size:1.2rem;color:var(--color-encre)">L'intelligence artificielle (Claude / Anthropic)</h2>
+    <p class="leading-relaxed mb-5" style="color:var(--color-ardoise);line-height:1.8">
+      Le questionnaire d'orientation s'appuie sur l'API de Claude (Anthropic). Voici comment cela fonctionne :
+    </p>
+    <div class="rounded-2xl px-8 py-7 space-y-4" style="background:white;border:1px solid var(--color-doux);color:var(--color-ardoise);margin:0 1px;line-height:1.75">
+      <p>
+        Lorsque vous décrivez vos symptômes, votre description est envoyée à l'API Anthropic
+        pour analyse, <strong style="color:var(--color-encre)">sans aucune information nominative</strong>
+        (ni nom, ni adresse mail, ni identifiant).
+      </p>
+      <p>
+        Anthropic ne conserve pas ces requêtes pour entraîner ses modèles.
+      </p>
+      <p>
+        Nous envisageons une migration vers une IA hébergée en Europe (Claude via AWS Bedrock
+        Europe, ou un modèle français comme Mistral) pour renforcer encore la proximité juridique.
+      </p>
+    </div>
+  </div>
+
+  <%# ── VOS DROITS (RGPD) ── %>
+  <div class="mb-12">
+    <h2 class="font-serif font-semibold mb-4" style="font-size:1.2rem;color:var(--color-encre)">Vos droits (RGPD)</h2>
+    <p class="leading-relaxed mb-5" style="color:var(--color-ardoise);line-height:1.8">
+      Conformément au Règlement Général sur la Protection des Données, vous disposez à tout
+      moment des droits suivants sur vos données :
+    </p>
+    <div class="rounded-2xl px-8 py-7 space-y-4" style="background:white;border:1px solid var(--color-doux);color:var(--color-ardoise);margin:0 1px;line-height:1.7">
+      <p><strong style="color:var(--color-encre)">Accès</strong> — obtenir une copie des données vous concernant.</p>
+      <p><strong style="color:var(--color-encre)">Rectification</strong> — corriger des informations inexactes.</p>
+      <p><strong style="color:var(--color-encre)">Effacement</strong> — demander la suppression de vos données (droit à l'oubli).</p>
+      <p><strong style="color:var(--color-encre)">Portabilité</strong> — récupérer vos données dans un format standard.</p>
+    </div>
+    <p class="leading-relaxed mt-5" style="color:var(--color-ardoise);line-height:1.8">
+      Pour exercer ces droits, écrivez-nous :
+      <a href="mailto:nicolas.goarant@hotmail.fr" class="hover:underline" style="color:var(--color-accent)">nicolas.goarant@hotmail.fr</a>.
+    </p>
+  </div>
+
+  <%# ── EN TOUTE TRANSPARENCE ── %>
+  <div class="mb-12">
+    <h2 class="font-serif font-semibold mb-4" style="font-size:1.2rem;color:var(--color-encre)">En toute transparence</h2>
+    <p class="leading-relaxed" style="color:var(--color-ardoise);line-height:1.8">
+      Nommer est un projet en construction. Nous travaillons à améliorer continuellement la
+      sécurité et la conformité du service. Si vous constatez quoi que ce soit qui vous interroge,
+      écrivez-nous : <a href="mailto:nicolas.goarant@hotmail.fr" class="hover:underline" style="color:var(--color-accent)">nicolas.goarant@hotmail.fr</a>.
+      Nous prenons chaque retour au sérieux.
+    </p>
+  </div>
+
+  <div style="height:1px;background:var(--color-doux)" class="mb-8"></div>
+  <p style="color:var(--color-ardoise);font-size:0.85rem">
+    Voir aussi les <%= link_to "mentions légales", mentions_legales_path, class: "hover:underline", style: "color:var(--color-accent)" %>.
+  </p>
+
+</div>

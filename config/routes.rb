@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   root "pathologies#index"
 
-  get "/a-propos",         to: "pages#about",            as: :about
-  get "/contact",          to: "pages#contact",           as: :contact
-  get "/mentions-legales", to: "pages#mentions_legales",  as: :mentions_legales
+  get "/a-propos",             to: "pages#about",                as: :about
+  get "/contact",              to: "pages#contact",              as: :contact
+  get "/mentions-legales",     to: "pages#mentions_legales",     as: :mentions_legales
+  get "/conseil-scientifique", to: "pages#conseil_scientifique", as: :conseil_scientifique
+  get "/securite-donnees",     to: "pages#securite_donnees",     as: :securite_donnees
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
