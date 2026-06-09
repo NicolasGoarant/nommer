@@ -23,7 +23,7 @@
   </p>
 
   <div class="rounded-3xl p-10" style="background:white;border:1px solid var(--color-doux)">
-    <%= form_with url: diagnostic_path, method: :post, local: true do |f| %>
+    <%= form_with url: diagnostic_path, method: :post, data: { turbo: false } do |f| %>
       <div class="mb-6">
         <label class="block text-xs tracking-widest uppercase font-medium mb-3" style="color:var(--color-ardoise)">
           Vos symptômes, votre histoire
