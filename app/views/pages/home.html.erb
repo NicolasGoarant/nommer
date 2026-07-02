@@ -1,0 +1,152 @@
+<%# ─── HERO ──────────────────────────────────────────────────────────────── %>
+<div class="relative flex items-center justify-center overflow-hidden hero-section">
+  <div class="absolute inset-0">
+    <img src="<%= asset_path('main_epaule.jpg') %>"
+         alt="" class="w-full h-full object-cover"
+         style="filter:brightness(0.78) saturate(0.9);object-position:center 20%">
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="line-height:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none" style="display:block;width:100%;height:80px"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#F7F4EF"/></svg></div>
+  <div class="hero-content relative z-10 text-center px-6 w-full max-w-2xl mx-auto">
+    <div class="rounded-3xl md:px-10 md:py-10" style="background:transparent" id="hero-card">
+    <style>
+      @media (min-width: 768px) {
+        #hero-card {
+          background: rgba(28,43,58,0.52) !important;
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255,255,255,0.12);
+        }
+      }
+      .hero-section { min-height: 60vh; padding-top: 2rem; padding-bottom: 4.5rem; }
+      @media (min-width: 768px) {
+        .hero-section { height: 85vh; max-height: 820px; padding-bottom: 0; padding-top: 0; }
+        .hero-content { margin-top: -4rem; }
+        .pathology-card { flex: 0 0 calc(33.333% - 1rem); }
+      }
+    </style>
+    <h1 class="font-serif font-semibold leading-tight mb-6 text-white"
+        style="font-size:clamp(2.2rem,5vw,4rem);text-shadow:0 2px 16px rgba(0,0,0,0.7)">
+      Et si c'était ça&nbsp;?
+    </h1>
+    <p class="leading-relaxed mb-8 mx-auto"
+       style="color:rgba(255,255,255,0.95);font-size:1.05rem;text-shadow:0 1px 10px rgba(0,0,0,0.8)">
+      En France, 8 à 12 millions de personnes souffrent d'une pathologie
+      qui tarde des années à être diagnostiquée —
+      c'est ce qu'on appelle <em style="color:white;font-style:normal;font-weight:700">l'errance médicale</em>.
+      <br><br>
+      Nommer vous aide à mettre des mots sur ce que vous ressentez,
+      et à arriver préparé chez votre médecin.
+    </p>
+    <p class="italic mx-auto mb-8"
+       style="color:rgba(255,255,255,0.78);font-size:0.95rem;text-shadow:0 1px 8px rgba(0,0,0,0.7);font-family:Georgia,serif">
+      Un outil pour préparer votre prochaine consultation, avec les bons mots.
+    </p>
+    <div class="flex items-center justify-center gap-4 flex-wrap">
+      <%= link_to "Tester mes symptômes →", new_diagnostic_path,
+          class: "px-8 py-4 rounded-full font-medium text-white transition-opacity hover:opacity-90",
+          style: "background:var(--color-accent);box-shadow:0 4px 24px rgba(192,120,90,0.45);font-size:1rem" %>
+      <%= link_to "Voir les pathologies ↓", "#pathologies",
+          class: "px-8 py-4 rounded-full font-medium transition-colors",
+          style: "border:2px solid white;color:white;background:rgba(255,255,255,0.15);font-size:1rem" %>
+    </div>
+    </div>
+  </div>
+</div>
+
+<%# ─── STATS ──────────────────────────────────────────────────────────────── %>
+<div class="max-w-5xl mx-auto px-6 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+    <div class="rounded-2xl px-6 py-8" style="background:white;border:1px solid var(--color-doux);box-shadow:0 2px 12px rgba(28,43,58,0.05)">
+      <div class="mb-3" style="font-size:1.5rem;line-height:1;opacity:0.85">👥</div>
+      <p class="font-serif font-semibold mb-2" style="font-size:2rem;color:var(--color-encre);white-space:nowrap">8 à 12 millions</p>
+      <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.5">de Français en errance médicale, sans diagnostic pour leur pathologie</p>
+    </div>
+    <div class="rounded-2xl px-6 py-8" style="background:white;border:1px solid var(--color-doux);box-shadow:0 2px 12px rgba(28,43,58,0.05)">
+      <div class="mb-3" style="font-size:1.5rem;line-height:1;opacity:0.85">⏳</div>
+      <p class="font-serif font-semibold mb-2" style="font-size:2rem;color:var(--color-encre);white-space:nowrap">7 ans</p>
+      <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.5">d'errance médicale en moyenne avant d'obtenir un diagnostic</p>
+    </div>
+    <div class="rounded-2xl px-6 py-8" style="background:white;border:1px solid var(--color-doux);box-shadow:0 2px 12px rgba(28,43,58,0.05)">
+      <div class="mb-3" style="font-size:1.5rem;line-height:1;opacity:0.85">📚</div>
+      <p class="font-serif font-semibold mb-2" style="font-size:2rem;color:var(--color-encre);white-space:nowrap"><%= @total_pathologies %></p>
+      <p style="color:var(--color-ardoise);font-size:0.95rem;line-height:1.5">pathologies documentées avec témoignages, symptômes et pistes</p>
+    </div>
+  </div>
+</div>
+
+<%# ─── TEASER PATHOLOGIES ─────────────────────────────────────────────────── %>
+<%# id="pathologies" pour que l'ancre du hero "Voir les pathologies ↓" scrolle
+    bien vers ce bloc, même si la grille complète vit désormais sur /pathologies. %>
+<div id="pathologies" class="pt-4 pb-16">
+  <div class="max-w-5xl mx-auto px-6 mb-8 text-center">
+    <p class="uppercase tracking-widest font-medium mb-3"
+       style="color:var(--color-ardoise);font-size:0.75rem">
+      Pathologies documentées
+    </p>
+    <h2 class="font-serif font-semibold"
+        style="font-size:1.55rem;color:var(--color-encre)">
+      Quelques pathologies emblématiques de l'errance médicale
+    </h2>
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-4 md:gap-6 max-w-5xl mx-auto px-3 md:px-6">
+    <% @teaser_pathologies.each do |p| %>
+      <%= render "pathologies/card", pathology: p %>
+    <% end %>
+  </div>
+
+  <div class="text-center mt-10">
+    <%= link_to "Voir toutes les pathologies →", pathologies_path,
+        class: "inline-block font-medium hover:opacity-70 transition-opacity",
+        style: "color:var(--color-encre);font-size:1rem;text-decoration:underline;text-underline-offset:4px" %>
+  </div>
+</div>
+
+<%# ─── RÉASSURANCE — BANDE FINE 4 SIGNAUX ─────────────────────────────────── %>
+<div class="max-w-5xl mx-auto px-6 pb-14">
+  <div class="rounded-2xl px-5 py-5 md:px-7 md:py-6"
+       style="background:white;border:1px solid var(--color-doux)">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div class="flex items-center gap-3">
+        <span style="font-size:1.25rem;line-height:1">🩺</span>
+        <span style="color:var(--color-encre);font-size:0.88rem;line-height:1.4">
+          Validation médicale en cours
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span style="font-size:1.25rem;line-height:1">🔒</span>
+        <span style="color:var(--color-encre);font-size:0.88rem;line-height:1.4">
+          Données privées
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span style="font-size:1.25rem;line-height:1">🎁</span>
+        <span style="color:var(--color-encre);font-size:0.88rem;line-height:1.4">
+          Gratuit, sans inscription
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span style="font-size:1.25rem;line-height:1">⚕️</span>
+        <span style="color:var(--color-encre);font-size:0.88rem;line-height:1.4">
+          Ne remplace pas un médecin
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# ─── CTA FINAL ──────────────────────────────────────────────────────────── %>
+<div style="background:var(--color-encre)">
+  <div class="text-center py-20 px-6 max-w-2xl mx-auto">
+    <h2 class="font-serif font-semibold text-white mb-4" style="font-size:2rem">
+      Vos symptômes vous parlent&nbsp;?
+    </h2>
+    <p class="mb-10 leading-relaxed" style="color:rgba(255,255,255,0.65);font-size:1rem">
+      Décrivez librement ce que vous traversez.<br>
+      Notre outil analyse votre profil et vous propose des pistes à explorer avec votre médecin.
+    </p>
+    <%= link_to "Analyser mes symptômes →", new_diagnostic_path,
+        class: "inline-block px-10 py-4 rounded-full font-medium text-white transition-opacity hover:opacity-85",
+        style: "background:var(--color-accent);font-size:1rem" %>
+  </div>
+</div>

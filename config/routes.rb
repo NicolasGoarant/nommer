@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "pathologies#index"
+  root "pages#home"
 
   get "/a-propos",             to: "pages#about",                as: :about
   get "/contact",              to: "pages#contact",              as: :contact

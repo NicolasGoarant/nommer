@@ -1,0 +1,141 @@
+<%#
+  Fiche pathologie (carte).
+  Locals :
+    - pathology : instance de Pathology
+%>
+<%
+  p = pathology
+  testimonials  = JSON.parse(p.testimonials || "[]") rescue []
+  first_quote   = testimonials.first
+  symptom_emojis = {
+    "douleur" => "🔴", "douleurs" => "🔴",
+    "fatigue" => "😔", "épuisement" => "😔",
+    "sommeil" => "😴", "insomnie" => "😴", "réparateur" => "😴",
+    "cognitif" => "🤯", "cognitifs" => "🤯", "mémoire" => "🤯",
+    "concentration" => "🤯", "brouillard" => "🤯", "mental" => "🤯",
+    "attention" => "🤯", "attentionnel" => "🤯",
+    "tête" => "🧠", "céphalée" => "🧠", "migraine" => "🧠",
+    "articulaire" => "🦴", "articulaires" => "🦴",
+    "raideur" => "🦴", "gonflement" => "🦴", "luxations" => "🦴", "entorses" => "🦴",
+    "règles" => "🩸", "menstruel" => "🩸", "saignement" => "🩸", "sang" => "🩸",
+    "pelvienne" => "🩺", "pelviennes" => "🩺",
+    "humeur" => "🌊", "impulsivité" => "🌊", "émotionnel" => "🌊", "irritabilité" => "🌊",
+    "peau" => "🫧", "éruption" => "🫧", "acné" => "🫧", "cutané" => "🫧", "cutanée" => "🫧",
+    "poids" => "⚖️",
+    "cheveux" => "💇", "chute" => "💇",
+    "digestif" => "🫁", "digestive" => "🫁", "digestives" => "🫁",
+    "abdominale" => "🫁", "abdominales" => "🫁",
+    "diarrhée" => "🫁", "constipation" => "🫁", "ballonnements" => "🫁",
+    "nausées" => "🤢", "vomissements" => "🤢",
+    "vision" => "👁️", "oculaire" => "👁️", "visuelle" => "👁️",
+    "palpitations" => "💓", "cardiaque" => "💓", "tachycardie" => "💓",
+    "anxiété" => "😰", "panique" => "😰", "anxieux" => "😰",
+    "dépression" => "😞", "dépressif" => "😞",
+    "étourdissements" => "💫", "malaises" => "💫", "vertiges" => "💫", "syncopes" => "💫",
+    "sécheresse" => "🫙",
+    "engourdissements" => "⚡", "fourmillements" => "⚡", "neuropathique" => "⚡",
+    "paralysie" => "⚡", "spasmes" => "⚡",
+    "fièvre" => "🌡️", "inflammation" => "🌡️", "sensibilité" => "🌡️",
+    "infertilité" => "👶", "fertilité" => "👶",
+    "hyperlaxité" => "🤸", "souplesse" => "🤸",
+    "somnolence" => "😪", "endormissement" => "😪", "cataplexie" => "😪",
+    "cycles" => "📅", "irréguliers" => "📅",
+    "aphte" => "👄", "buccal" => "👄", "buccaux" => "👄",
+    "pilosité" => "🪒", "excessive" => "🪒",
+    "motrice" => "🚶", "équilibre" => "🚶", "difficultés" => "🚶",
+    "urinaire" => "🚿", "urinaires" => "🚿",
+    "soleil" => "☀️",
+    "default" => "🩺"
+  }
+%>
+
+<%= link_to pathology_path(p.slug),
+    class: "pathology-card flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full",
+    style: "background:white;border:1px solid var(--color-doux);text-decoration:none;color:inherit" do %>
+
+  <%# ── IMAGE + OVERLAY ── %>
+  <div class="relative overflow-hidden" style="height:12rem;background:var(--color-doux)">
+    <% if p.image_url.present? %>
+      <img src="<%= p.image_url %>" alt="<%= p.name %>"
+           class="absolute inset-0 w-full h-full object-cover"
+           style="filter:saturate(0.75) brightness(0.82)">
+    <% end %>
+    <div class="absolute inset-0"
+         style="background:linear-gradient(to top, rgba(28,43,58,0.95) 0%, rgba(28,43,58,0.4) 45%, transparent 100%)"></div>
+
+    <%# Badge errance — coin haut gauche %>
+    <% if p.avg_diagnosis_delay %>
+      <div class="absolute top-3 left-3">
+        <span class="font-semibold px-3 py-1.5 rounded-full"
+              style="background:var(--color-accent);color:white;font-size:0.8rem">
+          ⏱ environ <%= p.avg_diagnosis_delay_text %> d'errance
+        </span>
+      </div>
+    <% end %>
+
+    <%# Nom en bas %>
+    <div class="absolute bottom-0 left-0 right-0 px-5 pb-4">
+      <h3 class="font-serif font-semibold text-white" style="font-size:1.2rem;line-height:1.2">
+        <%= p.name %>
+      </h3>
+    </div>
+  </div>
+
+  <%# ── CORPS STRUCTURÉ ── %>
+  <div class="flex flex-col flex-1 px-5 pt-4 pb-5 gap-4">
+
+    <%# Nombre de personnes %>
+    <% if p.nb_patients_label.present? %>
+      <div class="flex items-center gap-2 pb-3"
+           style="border-bottom:1px solid var(--color-doux)">
+        <span>🫂</span>
+        <span class="font-medium" style="color:var(--color-encre);font-size:0.88rem">
+          <%= p.nb_patients_label %>
+        </span>
+      </div>
+    <% end %>
+
+    <%# Citation patient %>
+    <% if first_quote %>
+      <div class="flex-1">
+        <p class="italic leading-relaxed"
+           style="color:#1C2B3A;font-size:0.9rem;font-weight:400">
+          «&nbsp;<%= first_quote["quote"] %>&nbsp;»
+        </p>
+        <p class="mt-2 font-medium"
+           style="color:var(--color-accent);font-size:0.82rem">
+          — <%= first_quote["initials"] %>
+        </p>
+      </div>
+    <% end %>
+
+    <%# Symptômes — bullet list %>
+    <div class="pt-3" style="border-top:1px solid var(--color-doux)">
+      <ul class="space-y-1.5">
+        <% p.key_symptoms_array.first(4).each do |s| %>
+          <%
+            emoji = symptom_emojis["default"]
+            symptom_emojis.each do |key, val|
+              next if key == "default"
+              if s.downcase.include?(key)
+                emoji = val
+                break
+              end
+            end
+          %>
+          <li class="flex items-start gap-2" style="color:var(--color-ardoise);font-size:0.85rem">
+            <span class="shrink-0" style="margin-top:0.1rem"><%= emoji %></span>
+            <span><%= s %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%# CTA %>
+    <div class="mt-auto block text-center py-2.5 rounded-xl font-medium"
+         style="background:var(--color-creme);color:var(--color-encre);font-size:0.88rem;border:1px solid var(--color-doux)">
+      En savoir plus →
+    </div>
+
+  </div>
+<% end %>
