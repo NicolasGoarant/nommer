@@ -30,4 +30,7 @@ class PagesController < ApplicationController
 
   def securite_donnees
   end
+
+  def partenaires
+  end
 end

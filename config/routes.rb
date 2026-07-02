@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/mentions-legales",     to: "pages#mentions_legales",     as: :mentions_legales
   get "/conseil-scientifique", to: "pages#conseil_scientifique", as: :conseil_scientifique
   get "/securite-donnees",     to: "pages#securite_donnees",     as: :securite_donnees
+  get "/partenaires",          to: "pages#partenaires",          as: :partenaires
 
   devise_for :users, controllers: {
     registrations: "users/registrations",

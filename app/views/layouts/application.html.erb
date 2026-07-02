@@ -31,7 +31,8 @@
         <% end %>
         <div class="flex items-center gap-5" style="font-size:0.92rem">
           <%= link_to "À propos", about_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
-          <%= link_to "Pathologies", "#{root_path}#pathologies", data: { turbo: false }, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+          <%= link_to "Pathologies", pathologies_path, data: { turbo: false }, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
+          <%= link_to "Partenaires", partenaires_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
           <% if user_signed_in? %>
             <%= link_to "Mon journal", journal_path, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
             <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "transition-opacity hover:opacity-60", style: "color:var(--color-ardoise)" %>
@@ -66,7 +67,8 @@
       <div id="mobile-menu" style="background:rgba(247,244,239,0.98);border-top:1px solid var(--color-doux)">
         <div class="px-6 py-6 flex flex-col gap-5" style="font-size:1.05rem">
           <%= link_to "À propos", about_path, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
-          <%= link_to "Pathologies", "#{root_path}#pathologies", data: { turbo: false }, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
+          <%= link_to "Pathologies", pathologies_path, data: { turbo: false }, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
+          <%= link_to "Partenaires", partenaires_path, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
           <% if user_signed_in? %>
             <%= link_to "Mon journal", journal_path, class: "font-medium", style: "color:var(--color-encre)", onclick: "document.getElementById('mobile-menu').classList.remove('open')" %>
             <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, style: "color:var(--color-ardoise)" %>
@@ -106,10 +108,11 @@
           <span>Nommer — outil de documentation personnelle, pas un diagnostic médical.</span>
         </div>
         <div class="hidden md:flex flex-wrap gap-x-6 gap-y-2 justify-end">
-          <%= link_to "Pathologies", "#{root_path}#pathologies", data: { turbo: false }, class: "hover:underline" %>
+          <%= link_to "Pathologies", pathologies_path, data: { turbo: false }, class: "hover:underline" %>
           <%= link_to "À propos", about_path, class: "hover:underline" %>
           <%= link_to "Tester", new_diagnostic_path, class: "hover:underline" %>
           <%= link_to "Conseil scientifique", conseil_scientifique_path, class: "hover:underline" %>
+          <%= link_to "Partenaires", partenaires_path, class: "hover:underline" %>
           <%= link_to "Sécurité & données", securite_donnees_path, class: "hover:underline" %>
           <%= link_to "Mentions légales", mentions_legales_path, class: "hover:underline" %>
           <%= link_to "Contact", contact_path, class: "hover:underline" %>

@@ -45,7 +45,7 @@
       <%= link_to "Tester mes symptômes →", new_diagnostic_path,
           class: "px-8 py-4 rounded-full font-medium text-white transition-opacity hover:opacity-90",
           style: "background:var(--color-accent);box-shadow:0 4px 24px rgba(192,120,90,0.45);font-size:1rem" %>
-      <%= link_to "Voir les pathologies ↓", "#pathologies",
+      <%= link_to "Voir les pathologies →", pathologies_path,
           class: "px-8 py-4 rounded-full font-medium transition-colors",
           style: "border:2px solid white;color:white;background:rgba(255,255,255,0.15);font-size:1rem" %>
     </div>
@@ -75,9 +75,7 @@
 </div>
 
 <%# ─── TEASER PATHOLOGIES ─────────────────────────────────────────────────── %>
-<%# id="pathologies" pour que l'ancre du hero "Voir les pathologies ↓" scrolle
-    bien vers ce bloc, même si la grille complète vit désormais sur /pathologies. %>
-<div id="pathologies" class="pt-4 pb-16">
+<div class="pt-4 pb-16">
   <div class="max-w-5xl mx-auto px-6 mb-8 text-center">
     <p class="uppercase tracking-widest font-medium mb-3"
        style="color:var(--color-ardoise);font-size:0.75rem">
