@@ -50,20 +50,11 @@ class DiagnosticService
   end
 
   def call_claude(prompt)
-    client = Anthropic::Client.new(
-      access_token: ENV.fetch("ANTHROPIC_API_KEY"),
-      log_errors: Rails.env.development?
-    )
-
-    response = client.messages(
-      parameters: {
-        model:      "claude-haiku-4-5-20251001",
-        max_tokens: 1500,
-        messages:   [{ role: "user", content: prompt }]
-      }
-    )
-
-    response["content"].first["text"]
+    Llm.client.chat(
+      system:     nil,
+      messages:   [{ role: "user", content: prompt }],
+      max_tokens: 1500
+    ).text
   end
 
   def parse_response(text)
