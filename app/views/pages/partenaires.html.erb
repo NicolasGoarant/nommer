@@ -4,7 +4,7 @@
     collaboration ouvertes. Formulations positives, terracotta réservée
     au bouton d'action final et à l'accent du logo Nommer. %>
 
-<div class="max-w-2xl mx-auto px-6 pt-16 pb-14">
+<div class="max-w-2xl mx-auto px-6 pt-20 pb-14">
 
   <%# ── HERO ── %>
   <%# Aplat crème légèrement teinté + filet ardoise pour donner de la respiration. %>
@@ -161,196 +161,88 @@
       à vos couleurs et à votre logo.
     </p>
 
-    <%# Toutes les maquettes centrées dans un même conteneur pour un rendu cohérent. %>
-    <div class="max-w-sm mx-auto space-y-5">
+    <%# Aperçus visuels réels — image_tag résout via le pipeline Rails. %>
+    <div class="space-y-8">
 
-      <%# APERÇU 1 — Flyer A5 portrait %>
+      <%# APERÇU 1 — Flyer recto + verso côte à côte %>
       <div>
-        <p class="uppercase tracking-widest font-medium mb-2 text-center"
+        <div class="grid grid-cols-2 gap-4 md:gap-5 mb-3">
+          <%= image_tag "flyer-recto.png",
+              alt: "Aperçu du flyer Nommer — recto",
+              class: "w-full h-auto block rounded-lg",
+              style: "box-shadow:0 6px 24px rgba(28,43,58,0.12)" %>
+          <%= image_tag "flyer-verso.png",
+              alt: "Aperçu du flyer Nommer — verso",
+              class: "w-full h-auto block rounded-lg",
+              style: "box-shadow:0 6px 24px rgba(28,43,58,0.12)" %>
+        </div>
+        <p class="uppercase tracking-widest font-medium text-center mb-4"
            style="color:var(--color-ardoise);opacity:0.7;font-size:0.62rem">
-          Aperçu — Flyer A5
+          Aperçu — flyer recto / verso (A5)
         </p>
-        <div class="rounded-lg overflow-hidden mx-auto"
-             style="background:linear-gradient(135deg, rgba(228,221,212,0.35) 0%, white 65%);
-                    border:1px solid var(--color-doux);
-                    box-shadow:0 6px 24px rgba(28,43,58,0.08);
-                    padding:1.15rem">
-          <%# Header brand %>
-          <div class="flex items-center gap-1.5 mb-3">
-            <svg viewBox="0 0 32 32" width="14" height="14" aria-hidden="true">
-              <circle cx="16" cy="16" r="14" fill="#1C2B3A"/>
-              <circle cx="16" cy="16" r="5" fill="#C0785A"/>
-              <circle cx="16" cy="16" r="2" fill="#F7F4EF"/>
-            </svg>
-            <span class="font-serif font-semibold" style="color:var(--color-encre);font-size:0.8rem">Nommer</span>
-          </div>
-          <%# Title + errance %>
-          <h4 class="font-serif font-semibold mb-0.5" style="color:var(--color-encre);font-size:1.05rem;line-height:1.15">
-            Fibromyalgie
-          </h4>
-          <p class="mb-3" style="color:var(--color-ardoise);font-size:0.6rem;line-height:1.3">
-            Environ 6 ans d'errance médicale en moyenne
-          </p>
-          <%# Symptômes list %>
-          <p class="font-semibold mb-1" style="color:var(--color-encre);font-size:0.66rem">Symptômes fréquents</p>
-          <ul class="space-y-0.5 mb-3" style="color:var(--color-ardoise);font-size:0.62rem;line-height:1.35">
-            <li>• Douleurs diffuses</li>
-            <li>• Fatigue persistante</li>
-            <li>• Troubles du sommeil</li>
-            <li>• Sensibilité accrue</li>
-          </ul>
-          <%# Quote %>
-          <div class="rounded px-2 py-1.5 mb-3"
-               style="background:var(--color-creme);border-left:2px solid var(--color-encre)">
-            <p class="italic" style="color:var(--color-encre);font-size:0.6rem;line-height:1.35">
-              « Chaque jour, un poids invisible pesait sur mes épaules. »
-            </p>
-            <p class="mt-0.5" style="color:var(--color-ardoise);font-size:0.53rem">— M. L.</p>
-          </div>
-          <%# À demander à votre médecin %>
-          <div class="mb-3">
-            <p class="font-semibold mb-0.5" style="color:var(--color-encre);font-size:0.66rem">
-              À demander à votre médecin :
-            </p>
-            <p style="color:var(--color-ardoise);font-size:0.6rem;line-height:1.35">
-              Un examen des points douloureux et un bilan biologique d'orientation.
-            </p>
-          </div>
-          <%# Bottom : QR + URL, puis placeholder logo — directement sous le bloc précédent %>
-          <div class="space-y-2">
-            <div class="flex items-center gap-2">
-              <%# QR code stylisé — SVG inline, 9x9 avec 3 finder patterns + data cells %>
-              <svg viewBox="0 0 9 9" width="34" height="34" shape-rendering="crispEdges"
-                   style="color:var(--color-encre);flex-shrink:0" fill="currentColor" aria-hidden="true">
-                <%# Finder pattern top-left %>
-                <rect x="0" y="0" width="3" height="3"/>
-                <rect x="1" y="1" width="1" height="1" fill="white"/>
-                <%# Finder pattern top-right %>
-                <rect x="6" y="0" width="3" height="3"/>
-                <rect x="7" y="1" width="1" height="1" fill="white"/>
-                <%# Finder pattern bottom-left %>
-                <rect x="0" y="6" width="3" height="3"/>
-                <rect x="1" y="7" width="1" height="1" fill="white"/>
-                <%# Data cells (motif stylisé) %>
-                <rect x="4" y="0" width="1" height="1"/>
-                <rect x="3" y="1" width="1" height="1"/>
-                <rect x="5" y="1" width="1" height="1"/>
-                <rect x="4" y="2" width="1" height="1"/>
-                <rect x="0" y="4" width="1" height="1"/>
-                <rect x="2" y="4" width="1" height="1"/>
-                <rect x="3" y="3" width="1" height="1"/>
-                <rect x="4" y="4" width="1" height="1"/>
-                <rect x="5" y="3" width="1" height="1"/>
-                <rect x="6" y="4" width="1" height="1"/>
-                <rect x="8" y="4" width="1" height="1"/>
-                <rect x="1" y="5" width="1" height="1"/>
-                <rect x="3" y="5" width="1" height="1"/>
-                <rect x="5" y="5" width="1" height="1"/>
-                <rect x="7" y="5" width="1" height="1"/>
-                <rect x="4" y="6" width="1" height="1"/>
-                <rect x="6" y="6" width="1" height="1"/>
-                <rect x="8" y="6" width="1" height="1"/>
-                <rect x="5" y="7" width="1" height="1"/>
-                <rect x="7" y="7" width="1" height="1"/>
-                <rect x="4" y="8" width="1" height="1"/>
-                <rect x="6" y="8" width="1" height="1"/>
-                <rect x="8" y="8" width="1" height="1"/>
+        <%# Téléchargement — bouton sobre, terracotta réservée au CTA final.
+            Guard File.exist? pour éviter de casser le rendu tant que le PDF
+            n'a pas été déposé dans app/assets/images/partenaires/. %>
+        <% if File.exist?(Rails.root.join("app/assets/images/partenaires/flyer-endometriose.pdf")) %>
+          <div class="text-center">
+            <%= link_to asset_path("partenaires/flyer-endometriose.pdf"),
+                class: "inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-medium transition-opacity hover:opacity-70",
+                style: "border:1px solid var(--color-encre);color:var(--color-encre);background:white;font-size:0.9rem",
+                download: "" do %>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v13"/>
+                <path d="M7 12l5 5 5-5"/>
+                <path d="M5 21h14"/>
               </svg>
-              <div>
-                <p class="font-semibold" style="color:var(--color-encre);font-size:0.72rem;line-height:1">
-                  nommer.app
-                </p>
-                <p class="mt-0.5" style="color:var(--color-ardoise);font-size:0.55rem;line-height:1.2">
-                  Préparer sa consultation.
-                </p>
-              </div>
-            </div>
-            <div class="rounded flex items-center justify-center text-center py-2.5 px-2"
-                 style="border:1px dashed var(--color-ardoise);opacity:0.65">
-              <span class="uppercase tracking-widest" style="color:var(--color-ardoise);font-size:0.55rem">
-                votre logo ici
-              </span>
-            </div>
+              <span>Télécharger le flyer (PDF)</span>
+            <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
 
-      <%# APERÇUS 2 & 3 — deux publications carrées %>
-      <div class="grid grid-cols-2 gap-3">
-
-        <%# APERÇU 2 — social square "Et si c'était ça ?" %>
-        <div>
-          <p class="uppercase tracking-widest font-medium mb-2 text-center"
-             style="color:var(--color-ardoise);opacity:0.7;font-size:0.55rem;line-height:1.3">
-            Aperçu — Réseaux sociaux
-          </p>
-          <div class="rounded-lg overflow-hidden flex flex-col justify-between"
-               style="background:linear-gradient(135deg, rgba(228,221,212,0.35) 0%, white 65%);
-                      border:1px solid var(--color-doux);
-                      box-shadow:0 6px 24px rgba(28,43,58,0.08);
-                      aspect-ratio:1/1;padding:0.85rem">
-            <div class="flex items-center gap-1">
-              <svg viewBox="0 0 32 32" width="10" height="10" aria-hidden="true">
-                <circle cx="16" cy="16" r="14" fill="#1C2B3A"/>
-                <circle cx="16" cy="16" r="5" fill="#C0785A"/>
-                <circle cx="16" cy="16" r="2" fill="#F7F4EF"/>
-              </svg>
-              <span class="font-serif font-semibold" style="color:var(--color-encre);font-size:0.6rem">Nommer</span>
-            </div>
-            <div class="flex-1 flex flex-col justify-center items-center text-center px-1">
-              <p class="font-serif font-semibold mb-1" style="color:var(--color-encre);font-size:0.95rem;line-height:1.1">
-                Et si c'était ça&nbsp;?
-              </p>
-              <p style="color:var(--color-ardoise);font-size:0.5rem;line-height:1.35">
-                Un outil pour préparer<br>votre prochaine consultation.
-              </p>
-            </div>
-            <div class="rounded flex items-center justify-center py-1 px-1"
-                 style="border:1px dashed var(--color-ardoise);opacity:0.65">
-              <span class="uppercase tracking-widest" style="color:var(--color-ardoise);font-size:0.42rem">
-                votre logo ici
-              </span>
-            </div>
-          </div>
+      <%# APERÇUS 2, 3, 4 — trois visuels carrés réseaux sociaux %>
+      <%# Grille contrainte pour rester nettement plus petite que le flyer. %>
+      <div>
+        <%# Flex explicite + width fixe inline : contourne toute règle héritée
+            qui étirerait les vignettes en pleine largeur. %>
+        <div class="mb-3" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <%= image_tag "social-1-accroche.png",
+              alt: "Aperçu visuel réseau social — accroche",
+              class: "rounded-lg",
+              style: "width:200px;height:200px;max-width:200px;object-fit:cover;display:block;box-shadow:0 6px 24px rgba(28,43,58,0.12)" %>
+          <%= image_tag "social-2-stat.png",
+              alt: "Aperçu visuel réseau social — chiffre-clé",
+              class: "rounded-lg",
+              style: "width:200px;height:200px;max-width:200px;object-fit:cover;display:block;box-shadow:0 6px 24px rgba(28,43,58,0.12)" %>
+          <%= image_tag "social-3-phrase.png",
+              alt: "Aperçu visuel réseau social — message",
+              class: "rounded-lg",
+              style: "width:200px;height:200px;max-width:200px;object-fit:cover;display:block;box-shadow:0 6px 24px rgba(28,43,58,0.12)" %>
         </div>
-
-        <%# APERÇU 3 — social square "7 ans" %>
-        <div>
-          <p class="uppercase tracking-widest font-medium mb-2 text-center"
-             style="color:var(--color-ardoise);opacity:0.7;font-size:0.55rem;line-height:1.3">
-            Aperçu — Réseaux sociaux
-          </p>
-          <div class="rounded-lg overflow-hidden flex flex-col justify-between"
-               style="background:linear-gradient(135deg, rgba(228,221,212,0.35) 0%, white 65%);
-                      border:1px solid var(--color-doux);
-                      box-shadow:0 6px 24px rgba(28,43,58,0.08);
-                      aspect-ratio:1/1;padding:0.85rem">
-            <div class="flex items-center gap-1">
-              <svg viewBox="0 0 32 32" width="10" height="10" aria-hidden="true">
-                <circle cx="16" cy="16" r="14" fill="#1C2B3A"/>
-                <circle cx="16" cy="16" r="5" fill="#C0785A"/>
-                <circle cx="16" cy="16" r="2" fill="#F7F4EF"/>
-              </svg>
-              <span class="font-serif font-semibold" style="color:var(--color-encre);font-size:0.6rem">Nommer</span>
-            </div>
-            <div class="flex-1 flex flex-col justify-center items-center text-center px-1">
-              <p class="font-serif font-semibold" style="color:var(--color-encre);font-size:1.7rem;line-height:1">
-                7 ans
-              </p>
-              <p class="mt-1" style="color:var(--color-ardoise);font-size:0.5rem;line-height:1.35">
-                d'errance médicale<br>en moyenne avant<br>un diagnostic.
-              </p>
-            </div>
-            <div class="rounded flex items-center justify-center py-1 px-1"
-                 style="border:1px dashed var(--color-ardoise);opacity:0.65">
-              <span class="uppercase tracking-widest" style="color:var(--color-ardoise);font-size:0.42rem">
-                votre logo ici
-              </span>
-            </div>
-          </div>
-        </div>
-
+        <p class="uppercase tracking-widest font-medium text-center mb-3"
+           style="color:var(--color-ardoise);opacity:0.7;font-size:0.62rem">
+          Aperçu — visuels réseaux sociaux
+        </p>
+        <%# Téléchargement des 3 PNG — liens texte sobres %>
+        <p class="text-center" style="color:var(--color-ardoise);font-size:0.9rem;line-height:1.6">
+          Télécharger les visuels :
+          <%= link_to "accroche", asset_path("social-1-accroche.png"),
+              class: "hover:opacity-70 transition-opacity",
+              style: "color:var(--color-encre);text-decoration:underline;text-underline-offset:3px",
+              download: "" %>
+          ·
+          <%= link_to "chiffre-clé", asset_path("social-2-stat.png"),
+              class: "hover:opacity-70 transition-opacity",
+              style: "color:var(--color-encre);text-decoration:underline;text-underline-offset:3px",
+              download: "" %>
+          ·
+          <%= link_to "message", asset_path("social-3-phrase.png"),
+              class: "hover:opacity-70 transition-opacity",
+              style: "color:var(--color-encre);text-decoration:underline;text-underline-offset:3px",
+              download: "" %>
+        </p>
       </div>
+
     </div>
 
     <p class="italic text-center mt-6" style="color:var(--color-ardoise);font-size:0.92rem;line-height:1.6">
@@ -375,7 +267,7 @@
 
   <%# ── CTA FINAL ── %>
   <div class="text-center pt-4">
-    <%= link_to "Discutons de votre contexte", contact_path,
+    <%= link_to "Proposer une collaboration", "mailto:nicolas.goarant@hotmail.fr",
         class: "inline-block px-8 py-3.5 rounded-full font-medium text-white transition-opacity hover:opacity-85",
         style: "background:var(--color-accent);font-size:1rem" %>
   </div>
